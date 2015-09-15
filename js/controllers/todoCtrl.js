@@ -30,8 +30,12 @@ if (!roomId || roomId.length === 0) {
 	roomId = "all";
 }
 
+// TODO: Please change this URL for your app
+var firebaseURL = "https://classquestion.firebaseio.com/";
+
+
 $scope.roomId = roomId;
-var url = "https://classquestion.firebaseio.com/" + roomId + "/questions/";
+var url = firebaseURL + roomId + "/questions/";
 var echoRef = new Firebase(url);
 
 var query = echoRef.orderByChild("order");
@@ -177,7 +181,7 @@ $scope.markAll = function (allCompleted) {
 };
 
 $scope.FBLogin = function () {
-	var ref = new Firebase("https://classquestion.firebaseio.com");
+	var ref = new Firebase(firebaseURL);
 	ref.authWithOAuthPopup("facebook", function(error, authData) {
 		if (error) {
 			console.log("Login Failed!", error);
@@ -192,7 +196,7 @@ $scope.FBLogin = function () {
 };
 
 $scope.FBLogout = function () {
-	var ref = new Firebase("https://classquestion.firebaseio.com");
+	var ref = new Firebase(firebaseURL);
 	ref.unauth();
 	delete $scope.$authData;
 	$scope.isAdmin = false;
