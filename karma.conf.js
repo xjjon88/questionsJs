@@ -44,15 +44,14 @@ module.exports = function(config) {
         type : 'html',
         dir : 'coverage/'
     },
+
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress', 'coverage'],
 
-
     // web server port
     port: 9876,
-
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
@@ -67,9 +66,20 @@ module.exports = function(config) {
     autoWatch: true,
 
 
+    // Continuous Integration mode
+    // if true, Karma captures browsers, runs the tests and exits
+    singleRun: true,
+
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
+
+    plugins: [
+      'karma-jasmine',
+      'karma-coverage',
+      'karma-chrome-launcher',
+//      'karma-firefox-launcher',
+    ],
 
     //
     client: {
@@ -78,9 +88,5 @@ module.exports = function(config) {
         bail: true
       }
     }
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    // singleRun: true
   })
 }
