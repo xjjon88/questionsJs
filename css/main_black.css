@@ -32,3 +32,12 @@
 }
 #toTop .fa {margin-right: 5px;}
 
+
+body{
+	background-color: black;
+	color: white;
+}
+
+.list-group-item{
+	background: darkgrey;
+}

@@ -37,4 +37,33 @@ describe('controllers unit test', function(){
     expect(results[0]).toEqual('Hello?');
   }));
 
+  it('setFirstAndRestSentence Dummy2', inject(function($rootScope, $controller) {
+    scope = $rootScope.$new();
+    var ctrl = $controller('MyCtrl1', {
+      $scope : scope
+    });
+    var results = scope.getFirstAndRestSentence("..?");
+    expect(results[0]).toEqual('.');
+  }));
+
+  it('setFirstAndRestSentence Dummy3', inject(function($rootScope, $controller) {
+    scope = $rootScope.$new();
+    var ctrl = $controller('MyCtrl1', {
+      $scope : scope
+    });
+    var results = scope.getFirstAndRestSentence("aa");
+    expect(results[0]).toEqual('aa');
+  }));
+
+  it('setFirstAndRestSentence Dummy4', inject(function($rootScope, $controller) {
+    scope = $rootScope.$new();
+    var ctrl = $controller('MyCtrl1', {
+      $scope : scope
+    });
+    var results = scope.getFirstAndRestSentence("?.a");
+    expect(results[0]).toEqual('?');
+  }));
+
+
+
 });

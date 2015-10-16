@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="todomvc" scroll data-framework="firebase">
+<html lang="en" ng-app="todomvc" scroll data-framework="firebase" ng-controller="TodoCtrl">
 <head>
 	<meta charset="utf-8">
 
@@ -19,10 +19,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
 	<!-- need this for comlted ones. TODO: can I do this in bootstrap -->
-	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" ng-href="css/{{ css }}.css">
 
 </head>
-<body ng-controller="TodoCtrl">
+<body>
 	<font size="10">Questions for {{roomId}}?</font>&nbsp;
 
 	<!--
@@ -63,7 +63,7 @@ ng-model="input.wholeMsg" autofocus></textarea>
 			<span class="label label-danger" ng-show="todo.new">New</span>
 			<span class="badge">{{todo.echo}}</span>
 			<!-- switch -->
-			<span ng-switch-when="?" class="glyphicon glyphicon-question-sign"></span>
+			<span ng-switch-when="?" class="glyphicon 	glyphicon-question-sign"></span>
 			<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
 			<span ng-class="{completed: todo.completed}">{{todo.head}}</span>
 		</h4>
@@ -105,5 +105,11 @@ ng-model="input.wholeMsg" autofocus></textarea>
 <script src="js/directives/todoFocus.js"></script>
 <script src="js/directives/todoBlur.js"></script>
 <script src="js/directives/todoEscape.js"></script>
+
+	<div class="cc-container">
+		<p class="change-color">Change Color Scheme</p>
+		<select   ng-model="css" ng-options="css_l.url as css_l.name for css_l in css_list"></select>
+	</div>
+
 </body>
 </html>

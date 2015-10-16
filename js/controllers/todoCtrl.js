@@ -31,7 +31,7 @@ if (!roomId || roomId.length === 0) {
 }
 
 // TODO: Please change this URL for your app
-var firebaseURL = "https://classquestion.firebaseio.com/";
+var firebaseURL = "https://xjquestions.firebaseio.com/";
 
 
 $scope.roomId = roomId;
@@ -97,6 +97,7 @@ $scope.getFirstAndRestSentence = function($string) {
 	return [head, desc];
 };
 
+	//
 $scope.addTodo = function () {
 	var newTodo = $scope.input.wholeMsg.trim();
 
@@ -232,5 +233,16 @@ angular.element($window).bind("scroll", function() {
 		$scope.$apply();
 	}
 });
+
+
+	// set the default css name
+	$scope.css = 'Light';
+
+	// create the list of css
+	$scope.css_list = [
+		{ name: 'Dark', url: 'main_black' },
+		{ name: 'Light', url: 'main' },
+	];
+
 
 }]);
