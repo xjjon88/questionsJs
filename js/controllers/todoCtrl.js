@@ -120,6 +120,7 @@ $scope.addTodo = function () {
 		timestamp: new Date().getTime(),
 		tags: "...",
 		echo: 0,
+		necho: 0,
 		order: 0
 	});
 	// remove the posted question in the input
@@ -140,6 +141,17 @@ $scope.addEcho = function (todo) {
 
 	// Disable the button
 	$scope.$storage[todo.$id] = "echoed";
+};
+
+$scope.minusEcho = function (todo) {
+    $scope.editedTodo = todo;
+    todo.necho = todo.necho - 1;
+    // Hack to order using this order.
+    todo.order = todo.order - 1;
+    $scope.todos.$save(todo);
+
+    // Disable the button
+    $scope.$storage[todo.$id] = "echoed";
 };
 
 $scope.doneEditing = function (todo) {
@@ -179,7 +191,7 @@ $scope.markAll = function (allCompleted) {
 		todo.completed = allCompleted;
 		$scope.todos.$save(todo);
 	});
-};
+};  
 
 $scope.FBLogin = function () {
 	var ref = new Firebase(firebaseURL);
