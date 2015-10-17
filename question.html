@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" ng-app="todomvc" scroll data-framework="firebase" ng-controller="TodoCtrl">
 <head>
 	<meta charset="utf-8">
@@ -55,13 +55,13 @@ ng-model="input.wholeMsg" autofocus></textarea>
 	<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
 </span>
 </div><!-- /input-group -->
-
+    
 
 <div class="list-group" id="todo-list">
 	<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
 		<h4 class="list-group-item-heading" ng-switch on="todo.headLastChar">
 			<span class="label label-danger" ng-show="todo.new">New</span>
-			<span class="badge">{{todo.echo}}</span>
+			<span class="badge">{{todo.echo+    todo.necho }}</span>
 			<!-- switch -->
 			<span ng-switch-when="?" class="glyphicon 	glyphicon-question-sign"></span>
 			<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
@@ -70,7 +70,9 @@ ng-model="input.wholeMsg" autofocus></textarea>
 		<p class="list-group-item-text"><span ng-bind-html="todo.trustedDesc"></span> created: {{todo.dateString}}
 			<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
 
-			<button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button>
+			
+            <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]"><font color="green">Like</font> <span class="label label-success">{{todo.echo}}</span></button>
+            <button class="btn btn-default btn-xs glyphicon glyphicon-hand-down" ng-click="minusEcho(todo)" ng-disabled="$storage[todo.$id]"><font color="red">Dislike</font> <span class="label label-danger">{{todo.necho}}</span></button>
 			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>
 			&nbsp;
 			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeTodo(todo)">Del</button>
