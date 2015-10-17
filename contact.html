@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>About us</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<!-- Custom styles for this template -->
+	<link href="css/contact.css" rel="stylesheet">
+</head>
+
+<body ng-controller="MemberListController">
+
+	<div class="site-wrapper">
+		<div class="site-wrapper-inner">
+			<div class="cover-container">
+
+        <div class="masthead clearfix">
+					<div class="inner">
+						<h3 class="masthead-brand">About us</h3>
+						<nav>
+							<ul class="nav masthead-nav">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="#">Features</a></li>
+								<li class="active"><a href="#">Contact</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+
+				<div class="inner cover">
+					<h1 class="cover-heading">Get Hard</h1>
+          <div class="cover-lead" ng-repeat="member in members">
+            <p class="col-md-6"> {{ member.name }} </p>
+            <p class="col-md-1">  </p>
+            <p class="col-md-5"> {{ member.email }} </p>
+          </div>
+				</div>
+
+				<div class="mastfoot">
+					<div class="inner">
+						<p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/lib/jquery.min.js"></script>
+	<script src="js/lib/bootstrap.min.js"></script>
+
+	<!-- 1.4.2 -->
+	<script src="js/lib/angular.min.js"></script>
+
+	<script>
+    angular.module('app', [])
+    .controller('MemberListController', ['$scope', function($scope) {
+      $scope.members = [ { name: "CHIU, Yik Tung" , email: "ytchiuaa@ust.hk" },
+                         { name: "ERICKSEN, Peter Sterling" , email: "psericsken@ust.hk" },
+                         { name: "HSU, Carena" , email: "chsu@ust.hk" },
+                         { name: "IP, Wai Hin" , email: "whipaa@ust.hk" },
+                         { name: "SUN, Kai Man" , email: "kmsun@ust.hk" },
+                         { name: "YU, Jonathan Long Kit" , email: "jlkyu@ust.hk" } ];
+    }]);
+	</script>
+
+</body>
+</html>
