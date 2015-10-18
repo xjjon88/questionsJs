@@ -12,6 +12,7 @@ angular.module('uiApp', [])
         // create the list of bootswatches
         $scope.bootstraps = [
             { name: 'Dark', url: 'main_black' },
+            { name: 'Red', url: 'main_red' },
         ];
 
     });

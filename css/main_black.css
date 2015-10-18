@@ -38,6 +38,15 @@ body{
 	color: white;
 }
 
+.cc-container{
+	background-color: black;
+	color: white;
+}
+
+.color-options {
+	color: black;
+}
+
 .list-group-item{
 	background: darkgrey;
 }

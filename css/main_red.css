@@ -34,10 +34,23 @@
 
 
 body{
-	background-color: red;
+	background-color: #B80000;
 	color: white;
+}
+
+.cc-container{
+	background-color: #B80000;
+	color: white;
+}
+
+.color-options {
+	color: black;
 }
 
 .list-group-item{
 	background: darkgrey;
+}
+
+.list-group-item[ng-show="todo.hidden"]{
+	background-color:  yellow;
 }

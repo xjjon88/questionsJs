@@ -148,7 +148,7 @@ $scope.minusEcho = function (todo) {
     $scope.editedTodo = todo;
     todo.necho = todo.necho - 1;
     // Hack to order using this order.
-    todo.order = todo.order - 1;
+    todo.order = todo.order + 1;
     $scope.todos.$save(todo);
 
     // Disable the button
@@ -261,6 +261,7 @@ angular.element($window).bind("scroll", function() {
 	$scope.css_list = [
 		{ name: 'Dark', url: 'main_black' },
 		{ name: 'Light', url: 'main' },
+		{ name: 'Red', url: 'main_red'}
 	];
 
 
