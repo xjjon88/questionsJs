@@ -120,7 +120,8 @@ $scope.addTodo = function () {
 		timestamp: new Date().getTime(),
 		tags: "...",
 		echo: 0,
-		order: 0
+		order: 0,
+		hidden: false
 	});
 	// remove the posted question in the input
 	$scope.input.wholeMsg = '';
@@ -159,6 +160,11 @@ $scope.revertEditing = function (todo) {
 
 $scope.removeTodo = function (todo) {
 	$scope.todos.$remove(todo);
+};
+$scope.hideTodo = function(todo){
+	$scope.editedTodo = todo;
+	todo.hidden = !todo.hidden;
+	$scope.todos.$save(todo);
 };
 
 $scope.clearCompletedTodos = function () {
