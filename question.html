@@ -77,6 +77,7 @@ ng-model="input.wholeMsg" autofocus></textarea>
 			&nbsp;
 			<button ng-show="!todo.hidden && isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-eye-close" aria-hidden="true" ng-click="hideTodo(todo)">Hide</button>
 			<button ng-show="todo.hidden" class="btn btn-default btn-xs glyphicon glyphicon-eye-open" aria-hidden="true" ng-click="hideTodo(todo)">Unhide</button>
+			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeTodo(todo)">Del</button>
 		</span>
 	</div>
 
