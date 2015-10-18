@@ -36,17 +36,17 @@
 <small>Share room url: {{absurl}}</small> &nbsp;
 <a class="btn btn-default" href="/index.html">Main</a>
 <button ng-hide="$authData" class="btn btn-primary left" type="button" ng-click="FBLogin()">Want Admin? Sign in with Facebook</button>
-<div class="cc-container">
-	<p class="change-color">Change Color Scheme
-	<select class="color-options" ng-model="css" ng-options="css_l.url as css_l.name for css_l in css_list"></select>
-	</p>
-</div>
 
 
 <!-- after login -->
 <img ng-show="$authData" src="https://graph.facebook.com/{{$authData.facebook.id}}/picture/?type=square&return_ssl_resources=1" alt="{{name}}" />
 {{$authData.facebook.displayName}}
 <button ng-show="$authData" class="btn btn-primary left" type="button" ng-click="FBLogout()">Logout</button>
+<div class="cc-container">
+	<p class="change-color">Change Color Scheme
+	<select class="color-options" ng-model="css" ng-options="css_l.url as css_l.name for css_l in css_list"></select>
+	</p>
+</div>
 
 <div class="input-group">
 	<!--
