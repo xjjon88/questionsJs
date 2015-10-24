@@ -55,6 +55,10 @@ body{
 	background-color:  yellow;
 }
 
+.pinnedpost{
+	background-color: #52CC29;
+}
+
 .hiddenpost {
 	color: #989898;
 	background-color: #FFFF9D;

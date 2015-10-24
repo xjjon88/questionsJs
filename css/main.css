@@ -32,6 +32,10 @@
 }
 #toTop .fa {margin-right: 5px;}
 
+.pinnedpost{
+	background-color: #85FF5C;
+}
+
 .hiddenpost {
 	color: #989898;
 	background-color: #FFFF9D;
