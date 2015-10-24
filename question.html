@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
 	<!-- need this for comlted ones. TODO: can I do this in bootstrap -->
-	<link rel="stylesheet" ng-href="css/{{ css }}.css">
+	<link rel="stylesheet" href="css/{{ css }}.css">
 
 </head>
 <body>
@@ -62,7 +62,7 @@ ng-model="input.wholeMsg" autofocus></textarea>
     
 
 <div class="list-group" id="todo-list">
-	<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-show="isAdmin || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+	<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-show="isAdmin || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden}">
 		<h4 class="list-group-item-heading" ng-switch on="todo.headLastChar">
 			<span class="label label-danger" ng-show="todo.new">New</span>
 			<span class="badge">{{todo.echo+    todo.necho }}</span>

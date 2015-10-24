@@ -54,3 +54,8 @@ body{
 .list-group-item[ng-show="todo.hidden"]{
 	background-color:  yellow;
 }
+
+.hiddenpost {
+	color: #989898;
+	background-color: #FFFF9D;
+}

@@ -255,7 +255,7 @@ angular.element($window).bind("scroll", function() {
 
 
 	// set the default css name
-	$scope.css = 'Light';
+	$scope.css = 'main';
 
 	// create the list of css
 	$scope.css_list = [
@@ -263,6 +263,5 @@ angular.element($window).bind("scroll", function() {
 		{ name: 'Light', url: 'main' },
 		{ name: 'Red', url: 'main_red'}
 	];
-
 
 }]);

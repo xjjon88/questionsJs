@@ -50,3 +50,8 @@ body{
 .list-group-item{
 	background: darkgrey;
 }
+
+.hiddenpost {
+	color: #989898;
+	background-color: #FFFF9D;
+}
