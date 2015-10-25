@@ -63,3 +63,23 @@ body{
 	color: #989898;
 	background-color: #FFFF9D;
 }
+
+
+.top-btn {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.top-part {
+	text-align: center;
+	margin: 20px 70px 20px 70px;
+}
+
+.input-group > textarea {
+	width: auto;
+	height: 100px;
+	min-height: 50px;
+	margin: 10px auto 10px auto;
+	resize: vertical;
+	font-size: 20px;
+}

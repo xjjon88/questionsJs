@@ -23,7 +23,8 @@
 
 </head>
 <body>
-	<font size="10">Questions for {{roomId}}?</font>&nbsp;
+<div class="top-part"> <!-- New div class top-part start -->
+	<font size="10"> {{roomId}} </font>&nbsp;
 
 	<!--
 
@@ -33,15 +34,17 @@
 	<a ng-class="{selected: location.path() == '/about'}" class="btn btn-warning" href="#/about">About</a>
 -->
 
-<small>Share room url: {{absurl}}</small> &nbsp;
-<a class="btn btn-default" href="/index.html">Main</a>
-<button ng-hide="$authData" class="btn btn-primary left" type="button" ng-click="FBLogin()">Want Admin? Sign in with Facebook</button>
+<div><small>Share room url: {{absurl}}</small> &nbsp; </div>
+<div class="top-btn"> <!-- New div class top-btn start -->
+	<a class="btn btn-default" href="/index.html">Main</a>
+	<button ng-hide="$authData" class="btn btn-primary left" type="button" ng-click="FBLogin()">Want Admin? Sign in with Facebook</button>
 
 
-<!-- after login -->
-<img ng-show="$authData" src="https://graph.facebook.com/{{$authData.facebook.id}}/picture/?type=square&return_ssl_resources=1" alt="{{name}}" />
-{{$authData.facebook.displayName}}
-<button ng-show="$authData" class="btn btn-primary left" type="button" ng-click="FBLogout()">Logout</button>
+	<!-- after login -->
+	<img ng-show="$authData" src="https://graph.facebook.com/{{$authData.facebook.id}}/picture/?type=square&return_ssl_resources=1" alt="{{name}}" />
+	{{$authData.facebook.displayName}}
+	<button ng-show="$authData" class="btn btn-primary left" type="button" ng-click="FBLogout()">Logout</button>
+</div> <!-- New div class top-btn end -->
 <div class="cc-container">
 	<p class="change-color">Change Color Scheme
 	<select class="color-options" ng-model="css" ng-options="css_l.url as css_l.name for css_l in css_list"></select>
@@ -59,7 +62,7 @@ ng-model="input.wholeMsg" autofocus></textarea>
 	<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
 </span>
 </div><!-- /input-group -->
-    
+</div> <!-- New div class top-part end -->
 
 <div class="list-group" id="todo-list">
 	<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-show="isAdmin || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden, pinnedpost: todo.pinned}">
