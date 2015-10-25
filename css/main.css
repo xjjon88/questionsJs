@@ -48,14 +48,19 @@
 
 .top-part {
 	text-align: center;
-	margin: 20px 70px 20px 70px;
+	margin-top: 20px;
 }
 
 .input-group > textarea {
-	width: auto;
+	min-width: 150px;
 	height: 100px;
 	min-height: 50px;
 	margin: 10px auto 10px auto;
 	resize: vertical;
 	font-size: 20px;
+}
+
+.input-group {
+	margin: 20px auto 20px auto;
+	max-width: 80%;
 }
