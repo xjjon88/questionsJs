@@ -282,7 +282,6 @@ angular.element($window).bind("scroll", function() {
 		{ name: 'Red', url: 'main_red'}
 	];
 
-<<<<<<< HEAD
 
 	$scope.example = {
 		text: '',
@@ -295,6 +294,4 @@ angular.element($window).bind("scroll", function() {
 
 
 
-=======
->>>>>>> origin/gh-pages
 }]);
