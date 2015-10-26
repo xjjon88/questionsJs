@@ -30,7 +30,7 @@ if (!roomId || roomId.length === 0) {
 	roomId = "all";
 }
 
-// TODO: Please change this URL for your app
+
 var firebaseURL = "https://xjquestions.firebaseio.com/";
 
 
@@ -38,10 +38,20 @@ $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
 var echoRef = new Firebase(url);
 
+
+	/** Sets roomTitle attribute for the root room object **/
+	var roomFB = new Firebase(firebaseURL + roomId);
+	roomFB.set({roomTitle : roomId});
+
+	var rQuery = roomFB.orderByKey();
+	$scope.rooms =  $firebaseArray(roomFB);
+
+
 var query = echoRef.orderByChild("order");
 // Should we limit?
 //.limitToFirst(1000);
 $scope.todos = $firebaseArray(query);
+
 
 //$scope.input.wholeMsg = '';
 $scope.editedTodo = null;
@@ -263,6 +273,17 @@ angular.element($window).bind("scroll", function() {
 		{ name: 'Light', url: 'main' },
 		{ name: 'Red', url: 'main_red'}
 	];
+
+
+	$scope.example = {
+		text: '',
+		word: /^\s*\w*\s*$/
+	};
+
+	$scope.join = function () {
+		$window.location.href = 'question.html#/' + $scope.example.text;
+	}
+
 
 
 }]);
