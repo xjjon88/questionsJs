@@ -32,3 +32,41 @@
 }
 #toTop .fa {margin-right: 5px;}
 
+.pinnedpost{
+	background-color: #85FF5C;
+}
+
+.hiddenpost {
+	color: #989898;
+	background-color: #FFFF9D;
+}
+
+/* Better Width */
+.top-btn {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.top-part {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.input-group > textarea {
+	min-width: 150px;
+	height: 100px;
+	min-height: 50px;
+	margin: 10px auto 10px auto;
+	resize: vertical;
+	font-size: 20px;
+}
+
+.input-group {
+	margin: 20px auto 20px auto;
+	max-width: 80%;
+}
+
+.list-group{
+	margin: 20px auto 20px auto;
+	max-width: 85%;
+}

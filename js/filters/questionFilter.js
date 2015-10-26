@@ -10,10 +10,13 @@ todomvc.filter('questionFilter', function () {
   return function (input, max) {
     var sorted = [];
     var newQuestions = [];
+    var pinQuestions = [];
     var sortedCount = 0;
 
     angular.forEach(input, function (todo) {
-      if (todo.timestamp > new Date().getTime() - 180000) { // 3min
+      if (todo.pinned == true)
+        pinQuestions.push(todo);
+      else if (todo.timestamp > new Date().getTime() - 180000) { // 3min
         todo.new = true;
         newQuestions.push(todo);
       } else if (sortedCount++<=max){  // show top n only.
@@ -32,6 +35,6 @@ todomvc.filter('questionFilter', function () {
     });
 
     // Combined list
-    return newQuestions.concat(sorted);
+    return pinQuestions.concat(newQuestions.concat(sorted));
   };
 });

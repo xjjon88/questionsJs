@@ -19,11 +19,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
 	<!-- need this for comlted ones. TODO: can I do this in bootstrap -->
-	<link rel="stylesheet" ng-href="css/{{ css }}.css">
+	<link rel="stylesheet" href="css/{{ css }}.css">
 
 </head>
 <body>
-	<font size="10">Questions for {{roomId}}?</font>&nbsp;
+<div class="top-part"> <!-- New div class top-part start -->
+	<font size="10"> {{roomId}} </font>&nbsp;
 
 	<!--
 
@@ -33,15 +34,17 @@
 	<a ng-class="{selected: location.path() == '/about'}" class="btn btn-warning" href="#/about">About</a>
 -->
 
-<small>Share room url: {{absurl}}</small> &nbsp;
-<a class="btn btn-default" href="/index.html">Main</a>
-<button ng-hide="$authData" class="btn btn-primary left" type="button" ng-click="FBLogin()">Want Admin? Sign in with Facebook</button>
+<div><small>Share room url: {{absurl}}</small> &nbsp; </div>
+<div class="top-btn"> <!-- New div class top-btn start -->
+	<a class="btn btn-default" href="/index.html">Main</a>
+	<button ng-hide="$authData" class="btn btn-primary left" type="button" ng-click="FBLogin()">Want Admin? Sign in with Facebook</button>
 
 
-<!-- after login -->
-<img ng-show="$authData" src="https://graph.facebook.com/{{$authData.facebook.id}}/picture/?type=square&return_ssl_resources=1" alt="{{name}}" />
-{{$authData.facebook.displayName}}
-<button ng-show="$authData" class="btn btn-primary left" type="button" ng-click="FBLogout()">Logout</button>
+	<!-- after login -->
+	<img ng-show="$authData" src="https://graph.facebook.com/{{$authData.facebook.id}}/picture/?type=square&return_ssl_resources=1" alt="{{name}}" />
+	{{$authData.facebook.displayName}}
+	<button ng-show="$authData" class="btn btn-primary left" type="button" ng-click="FBLogout()">Logout</button>
+</div> <!-- New div class top-btn end -->
 <div class="cc-container">
 	<p class="change-color">Change Color Scheme
 	<select class="color-options" ng-model="css" ng-options="css_l.url as css_l.name for css_l in css_list"></select>
@@ -59,10 +62,10 @@ ng-model="input.wholeMsg" autofocus></textarea>
 	<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
 </span>
 </div><!-- /input-group -->
-    
+</div> <!-- New div class top-part end -->
 
 <div class="list-group" id="todo-list">
-	<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-show="isAdmin || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+	<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-show="isAdmin || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden, pinnedpost: todo.pinned}">
 		<h4 class="list-group-item-heading" ng-switch on="todo.headLastChar">
 			<span class="label label-danger" ng-show="todo.new">New</span>
 			<span class="badge">{{todo.echo+    todo.necho }}</span>
@@ -77,6 +80,7 @@ ng-model="input.wholeMsg" autofocus></textarea>
 			
             <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]"><font color="green">Like</font> <span class="label label-success">{{todo.echo}}</span></button>
             <button class="btn btn-default btn-xs glyphicon glyphicon-hand-down" ng-click="minusEcho(todo)" ng-disabled="$storage[todo.$id]"><font color="red">Dislike</font> <span class="label label-danger">{{todo.necho}}</span></button>
+            <button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-pushpin" ng-click="pinTodo(todo)">Pin to Top</button>
 			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>
 			&nbsp;
 			<button ng-show="!todo.hidden && isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-eye-close" aria-hidden="true" ng-click="hideTodo(todo)">Hide</button>

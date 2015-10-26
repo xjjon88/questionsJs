@@ -132,7 +132,8 @@ $scope.addTodo = function () {
 		echo: 0,
 		necho: 0,
 		order: 0,
-		hidden: false
+		hidden: false,
+		pinned: false
 	});
 	// remove the posted question in the input
 	$scope.input.wholeMsg = '';
@@ -189,6 +190,13 @@ $scope.hideTodo = function(todo){
 	todo.hidden = !todo.hidden;
 	$scope.todos.$save(todo);
 };
+
+//pin todo to top of question room
+$scope.pinTodo = function(todo){
+	$scope.editedTodo = todo;
+	todo.pinned = !todo.pinned;
+	$scope.todos.$save(todo);
+}
 
 $scope.clearCompletedTodos = function () {
 	$scope.todos.forEach(function (todo) {
@@ -265,7 +273,7 @@ angular.element($window).bind("scroll", function() {
 
 
 	// set the default css name
-	$scope.css = 'Light';
+	$scope.css = 'main';
 
 	// create the list of css
 	$scope.css_list = [
@@ -274,6 +282,7 @@ angular.element($window).bind("scroll", function() {
 		{ name: 'Red', url: 'main_red'}
 	];
 
+<<<<<<< HEAD
 
 	$scope.example = {
 		text: '',
@@ -286,4 +295,6 @@ angular.element($window).bind("scroll", function() {
 
 
 
+=======
+>>>>>>> origin/gh-pages
 }]);
