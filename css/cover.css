@@ -175,7 +175,7 @@ input[type=text] {
   }
   .mastfoot {
     bottom: 0;
-    margin-top: 70px;
+    position: fixed;
   }
   .masthead,
   .mastfoot,
