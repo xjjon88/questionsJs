@@ -60,6 +60,7 @@ body{
 	background-color: #FFFF9D;
 }
 
+/* Better Width */
 .top-btn {
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -82,4 +83,9 @@ body{
 .input-group {
 	margin: 20px auto 20px auto;
 	max-width: 80%;
+}
+
+.list-group{
+	margin: 20px auto 20px auto;
+	max-width: 85%;
 }
