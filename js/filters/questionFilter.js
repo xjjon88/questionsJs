@@ -17,10 +17,10 @@ todomvc.filter('questionFilter', function () {
       if (todo.pinned == true)
         pinQuestions.push(todo);
       else if (todo.timestamp > new Date().getTime() - 180000) { // 3min
-        todo.new = true;
+        todo.newQuestion = true;
         newQuestions.push(todo);
       } else if (sortedCount++<=max){  // show top n only.
-        todo.new = false;
+        todo.newQuestion = false;
         sorted.push(todo);
       }
 
