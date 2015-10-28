@@ -154,8 +154,7 @@ $scope.addEcho = function (todo) {
  if($scope.$storage[todo.$id]== "echoed"){                              // undoing the like
 	todo.echo = todo.echo-1;
 
-	todo.buttonStyle = "btn-default btn-xs;"
-	$scope.$storage[todo.$id] = " ";
+	$scope.$storage[todo.$id] = "default";
 	$scope.todos.$save(todo);
 
 	return ;
@@ -163,19 +162,11 @@ $scope.addEcho = function (todo) {
 
 	if($scope.$storage[todo.$id] == "nechoed"){
 		todo.necho = todo.necho + 1;
-		todo.buttonStyle1 = "btn-default btn-xs;"
 
 	}
-
-
-
 	todo.echo = todo.echo + 1;
 	// Hack to order using this order.
 //	todo.order = todo.order -1;
-
-	todo.buttonStyle = "btn-success btn-xs;"
-
-
 
 	// Disable the button
 	$scope.$storage[todo.$id] = "echoed";
@@ -193,7 +184,6 @@ $scope.minusEcho = function (todo) {
 		todo.necho = todo.necho+1;
 		$scope.$storage[todo.$id] = "default";
 
-		todo.buttonStyle1 = "btn-default btn-xs;"
 		$scope.todos.$save(todo);
 
 		return ;
@@ -201,14 +191,12 @@ $scope.minusEcho = function (todo) {
 
 	if($scope.$storage[todo.$id] == "echoed"){
 		todo.echo = todo.echo - 1;
-		todo.buttonStyle = "btn-default btn-xs;"
 	}
 
 
     todo.necho = todo.necho - 1;
     // Hack to order using this order.
   //  todo.order = todo.order - 1;
-		todo.buttonStyle1 = "btn-danger btn-xs;"
 
     // Disable the button
     $scope.$storage[todo.$id] = "nechoed";
