@@ -145,26 +145,90 @@ $scope.editTodo = function (todo) {
 };
 
 $scope.addEcho = function (todo) {
+
+
+
 	$scope.editedTodo = todo;
+
+
+ if($scope.$storage[todo.$id]== "echoed"){                              // undoing the like
+	todo.echo = todo.echo-1;
+
+	todo.buttonStyle = "btn-default btn-xs;"
+	$scope.$storage[todo.$id] = " ";
+	$scope.todos.$save(todo);
+
+	return ;
+}
+
+	if($scope.$storage[todo.$id] == "nechoed"){
+		todo.necho = todo.necho + 1;
+		todo.buttonStyle1 = "btn-default btn-xs;"
+
+	}
+
+
+
 	todo.echo = todo.echo + 1;
 	// Hack to order using this order.
-	todo.order = todo.order -1;
-	$scope.todos.$save(todo);
+//	todo.order = todo.order -1;
+
+	todo.buttonStyle = "btn-success btn-xs;"
+
+
 
 	// Disable the button
 	$scope.$storage[todo.$id] = "echoed";
+	$scope.todos.$save(todo);
+
 };
 
 $scope.minusEcho = function (todo) {
-    $scope.editedTodo = todo;
+
+	$scope.editedTodo = todo;
+
+
+
+	if($scope.$storage[todo.$id] == "nechoed"){                              // undoing the dislike
+		todo.necho = todo.necho+1;
+		$scope.$storage[todo.$id] = "default";
+
+		todo.buttonStyle1 = "btn-default btn-xs;"
+		$scope.todos.$save(todo);
+
+		return ;
+	}
+
+	if($scope.$storage[todo.$id] == "echoed"){
+		todo.echo = todo.echo - 1;
+		todo.buttonStyle = "btn-default btn-xs;"
+	}
+
+
     todo.necho = todo.necho - 1;
     // Hack to order using this order.
-    todo.order = todo.order + 1;
-    $scope.todos.$save(todo);
+  //  todo.order = todo.order - 1;
+		todo.buttonStyle1 = "btn-danger btn-xs;"
 
     // Disable the button
-    $scope.$storage[todo.$id] = "echoed";
+    $scope.$storage[todo.$id] = "nechoed";
+		$scope.todos.$save(todo);
+
+
 };
+
+$scope.buttonLiked = function (id){
+	if ($scope.$storage[id] == "echoed")
+		return true;
+	return false;
+}
+
+$scope.buttonDisliked = function (id){
+	if ($scope.$storage[id] == "nechoed")
+		return true;
+	return false;
+}
+
 
 $scope.doneEditing = function (todo) {
 	$scope.editedTodo = null;
@@ -216,7 +280,7 @@ $scope.markAll = function (allCompleted) {
 		todo.completed = allCompleted;
 		$scope.todos.$save(todo);
 	});
-};  
+};
 
 $scope.FBLogin = function () {
 	var ref = new Firebase(firebaseURL);
