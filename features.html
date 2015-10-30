@@ -9,7 +9,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../../favicon.ico">
 
-  <title>About us</title>
+  <title>New Features</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -25,24 +25,20 @@
 
         <div class="masthead clearfix">
 					<div class="inner">
-						<h3 class="masthead-brand">About us</h3>
+						<h3 class="masthead-brand">New Features</h3>
 						<nav>
 							<ul class="nav masthead-nav">
 								<li><a href="index.html">Home</a></li>
-								<li><a href="features.html">Features</a></li>
-								<li class="active"><a href="#">Contact</a></li>
+							<li class="active"><a href="#">Features</a></li>
+								<li><a href="contact.html">Contact</a></li>
 							</ul>
 						</nav>
 					</div>
 				</div>
 
 				<div class="inner cover">
-					<h1 class="cover-heading">Get Hard</h1>
-          <div class="cover-lead" ng-repeat="member in members">
-            <p class="col-md-6"> {{ member.name }} </p>
-            <p class="col-md-1">  </p>
-            <p class="col-md-5"> {{ member.email }} </p>
-          </div>
+					<h1 class="cover-heading">Get Hard's Question Room</h1>
+          <img src="gethard.png" alt="Get Hard Icon" style="width:400x;height:300px;">
 				</div>
 
 				<div class="mastfoot">
@@ -54,7 +50,7 @@
 			</div>
 		</div>
 	</div>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QJ3rOtEOOgM" frameborder="0" allowfullscreen></iframe>
 	<!-- Bootstrap core JavaScript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
@@ -64,17 +60,7 @@
 	<!-- 1.4.2 -->
 	<script src="js/lib/angular.min.js"></script>
 
-	<script>
-    angular.module('app', [])
-    .controller('MemberListController', ['$scope', function($scope) {
-      $scope.members = [ { name: "CHIU, Yik Tung" , email: "ytchiuaa@ust.hk" },
-                         { name: "ERICKSEN, Peter Sterling" , email: "psericksen@connect.ust.hk" },
-                         { name: "HSU, Carena" , email: "chsu@ust.hk" },
-                         { name: "IP, Wai Hin" , email: "whipaa@ust.hk" },
-                         { name: "SUN, Kai Man" , email: "kmsun@ust.hk" },
-                         { name: "YU, Jonathan Long Kit" , email: "jlkyu@connect.ust.hk" } ];
-    }]);
-	</script>
+
 
 </body>
 </html>
