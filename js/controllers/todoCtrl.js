@@ -151,26 +151,30 @@ $scope.addEcho = function (todo) {
 	$scope.editedTodo = todo;
 
 
- if($scope.$storage[todo.$id]== "echoed"){                              // undoing the like
-	todo.echo = todo.echo-1;
+ 	if($scope.$storage[todo.$id]== "echoed"){                              // undoing the like
+		todo.echo = todo.echo-1;
+		todo.order = todo.order-1;
 
-	$scope.$storage[todo.$id] = "default";
-	$scope.todos.$save(todo);
-
-	return ;
-}
-
-	if($scope.$storage[todo.$id] == "nechoed"){
-		todo.necho = todo.necho + 1;
-
+		$scope.$storage[todo.$id] = "default";
+		$scope.todos.$save(todo);
 	}
-	todo.echo = todo.echo + 1;
-	// Hack to order using this order.
-//	todo.order = todo.order -1;
+
+	else if($scope.$storage[todo.$id] == "nechoed"){
+		todo.necho = todo.necho - 1;
+		todo.echo = todo.echo + 1;
+		todo.order = todo.order+2;
+
+		$scope.$storage[todo.$id] = "echoed";
+		$scope.todos.$save(todo);
+	}
+	else{
+		todo.echo = todo.echo + 1;
+		todo.order = todo.order+1;
 
 	// Disable the button
-	$scope.$storage[todo.$id] = "echoed";
-	$scope.todos.$save(todo);
+		$scope.$storage[todo.$id] = "echoed";
+		$scope.todos.$save(todo);
+	}
 
 };
 
@@ -181,27 +185,29 @@ $scope.minusEcho = function (todo) {
 
 
 	if($scope.$storage[todo.$id] == "nechoed"){                              // undoing the dislike
-		todo.necho = todo.necho+1;
+		todo.necho = todo.necho-1;
+		todo.order = todo.order+1;
+		
 		$scope.$storage[todo.$id] = "default";
-
 		$scope.todos.$save(todo);
-
-		return ;
 	}
 
-	if($scope.$storage[todo.$id] == "echoed"){
+	else if($scope.$storage[todo.$id] == "echoed"){
 		todo.echo = todo.echo - 1;
+		todo.necho = todo.necho + 1;
+		todo.order = todo.order-2;
+
+		$scope.$storage[todo.$id] = "nechoed";
+		$scope.todos.$save(todo);
 	}
-
-
-    todo.necho = todo.necho - 1;
-    // Hack to order using this order.
-  //  todo.order = todo.order - 1;
+	else{
+		todo.necho = todo.necho + 1;
+		todo.order = todo.order-1;
 
     // Disable the button
-    $scope.$storage[todo.$id] = "nechoed";
+    	$scope.$storage[todo.$id] = "nechoed";
 		$scope.todos.$save(todo);
-
+	}
 
 };
 
