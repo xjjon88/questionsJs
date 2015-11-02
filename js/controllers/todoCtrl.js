@@ -40,11 +40,11 @@ var echoRef = new Firebase(url);
 
 
 	/** Sets roomTitle attribute for the root room object **/
-	var roomFB = new Firebase(firebaseURL + roomId);
-	roomFB.set({roomTitle : roomId});
+	//var roomFB = new Firebase(firebaseURL + roomId);
+	//roomFB.set({roomTitle : roomId});
 
-	var rQuery = roomFB.orderByKey();
-	$scope.rooms =  $firebaseArray(roomFB);
+	//var rQuery = roomFB.orderByKey();
+	//$scope.rooms =  $firebaseArray(roomFB);
 
 
 var query = echoRef.orderByChild("order");
