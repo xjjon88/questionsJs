@@ -64,6 +64,10 @@ ng-model="input.wholeMsg" autofocus></textarea>
 </div><!-- /input-group -->
 </div> <!-- New div class top-part end -->
 
+<div class="hashtags">
+	<span ng-repeat="todo in todos | filter:input">{{todo.tags}}</span>
+</div>
+
 <div class="list-group" id="todo-list">
 	<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-show="isAdmin || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden, pinnedpost: todo.pinned}">
 		<h4 class="list-group-item-heading" ng-switch on="todo.headLastChar">
