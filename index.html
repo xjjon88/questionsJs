@@ -56,11 +56,11 @@
 
 
 
-						<div class="alert alert-warning" role="alert" ng-show="form.input.$error.required">
-							Room name is required!</div>
-							<div class="alert alert-warning" role="alert" ng-show="form.input.$error.pattern">
-								Room name must be a single English word!
-							</div>
+						<div class="alert alert-danger" role="alert" ng-show="form.input.$error.required">
+							<strong>Warning!</strong>Room name is required!</div>
+						<div class="alert alert-danger" role="alert" ng-show="form.input.$error.pattern">
+							<strong>Warning!</strong>Room name must be a single English word!
+						</div>
 
 
 
