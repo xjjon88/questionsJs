@@ -57,24 +57,34 @@
 
 
 						<div class="alert alert-danger" role="alert" ng-show="form.input.$error.required">
-							<strong>Warning!</strong>Room name is required!</div>
+							<strong>Warning! </strong>Room name is required!</div>
 						<div class="alert alert-danger" role="alert" ng-show="form.input.$error.pattern">
-							<strong>Warning!</strong>Room name must be a single English word!
-						</div>
-
-
-
+							<strong>Warning! </strong>Room name must be a single English word!</div>
 
 
 					</div>
 
 
 
-				Available Rooms
+				<!-- Available Rooms
 					<span ng-repeat="room in rooms">
 						{{ room.roomTitle }}
 					</span>
+				</div>-->
+				
+				<!-- New suggested room list-->
+				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    					<button class="btn btn-lg btn-info" type="button" data-toggle="collapse" id="ListButton" data-target="#collapseList" aria-expanded="false" aria-controls="collapseList"> Suggestes Room List </button>
+					<div class="collapse" id="collapseList">
+						<div class="list-group">
+							<a href="question.html#/comp3111_class/" class="list-group-item">comp3111_class</a>
+							<a href="question.html#/comp3111_project/" class="list-group-item">comp3111_project</a>
+							<a href="question.html#/comp3111_midterm/" class="list-group-item">comp3111_midterm</a>
+							<a href="question.html#/comp3111_hw/" class="list-group-item">comp3111_hw</a>
+						</div>
+					</div>
 				</div>
+				<!-- End: New suggested room list -->
 
 
 						<div class="mastfoot">
