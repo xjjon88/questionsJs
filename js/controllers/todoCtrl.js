@@ -161,7 +161,7 @@ $scope.addEcho = function (todo) {
 }
 
 	if($scope.$storage[todo.$id] == "nechoed"){
-		todo.necho = todo.necho + 1;
+		todo.necho = todo.necho - 1;
 
 	}
 	todo.echo = todo.echo + 1;
@@ -181,7 +181,7 @@ $scope.minusEcho = function (todo) {
 
 
 	if($scope.$storage[todo.$id] == "nechoed"){                              // undoing the dislike
-		todo.necho = todo.necho+1;
+		todo.necho = todo.necho-1;
 		$scope.$storage[todo.$id] = "default";
 
 		$scope.todos.$save(todo);
@@ -194,7 +194,7 @@ $scope.minusEcho = function (todo) {
 	}
 
 
-    todo.necho = todo.necho - 1;
+    todo.necho = todo.necho + 1;
     // Hack to order using this order.
   //  todo.order = todo.order - 1;
 
