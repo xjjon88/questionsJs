@@ -77,9 +77,36 @@ ng-model="input.wholeMsg" autofocus></textarea>
 		<p class="list-group-item-text"><span ng-bind-html="todo.trustedDesc"></span> created: {{todo.dateString}}
 			<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
 
-			
-            <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]"><font color="green">Like</font> <span class="label label-success">{{todo.echo}}</span></button>
-            <button class="btn btn-default btn-xs glyphicon glyphicon-hand-down" ng-click="minusEcho(todo)" ng-disabled="$storage[todo.$id]"><font color="red">Dislike</font> <span class="label label-danger">{{todo.necho}}</span></button>
+			<!-- Like Button-->
+			<button ng-show ="buttonLiked(todo.$id)" type="button" style= "width: 80px;background-color:green;color:white; border:1px #000000 solid;"  ng-click="addEcho(todo)" >
+
+					<font >Like</font>
+					<span class= "glyphicon glyphicon-hand-up"></span>
+			</button>
+
+
+			<button ng-hide ="buttonLiked(todo.$id)" type="button" style= "width: 80px;background-color:white;color:green; border: 1px #00FF00 solid;"  ng-click="addEcho(todo)"  >
+				<font >Like</font>
+				<span class= "glyphicon glyphicon-hand-up"></span>
+			</button>
+			<!-- Like/Dislike Amount-->
+
+			<span class ="label label-success">{{todo.echo}}</span>
+			<font> : </font>
+			<span class ="label label-danger">{{todo.necho}}</span>
+
+			<!-- Dislike button-->
+
+			<button ng-show ="buttonDisliked(todo.$id)" type="button" style= "width: 80px;background-color:red;color:white;border:1px #000000 solid;" ng-click="minusEcho(todo)"  >
+						<span class= "glyphicon glyphicon-hand-down"></span>
+				<font >Dislike</font>
+			</button>
+
+
+			<button ng-hide ="buttonDisliked(todo.$id)" type="button" style= "width: 80px;background-color:white;color:red;border:1px #FF0000 solid;" ng-click="minusEcho(todo)"  >
+				<span class= "glyphicon glyphicon-hand-down"></span>
+				<font >Dislike</font>
+			</button>
             <button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-pushpin" ng-click="pinTodo(todo)">Pin to Top</button>
 			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>
 			&nbsp;
@@ -125,3 +152,4 @@ ng-model="input.wholeMsg" autofocus></textarea>
 
 </body>
 </html>
+
