@@ -9,16 +9,6 @@ a:hover {
   color: #fff;
 }
 
-/* Custom default button */
-.btn-default,
-.btn-default:hover,
-.btn-default:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritence from `body` */
-  background-color: #fff;
-  border: 1px solid #fff;
-}
-
 
 /*
  * Base structure
@@ -27,12 +17,11 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #3e6487;
+  background-color: #5f9bbf;
 }
 body {
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 5px rgba(140,200,230,.5);
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -41,8 +30,8 @@ body {
   width: 100%;
   height: 100%; /* For at least Firefox */
   min-height: 100%;
-  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+  -webkit-box-shadow: inset 0 0 100px rgba(255,255,255,.5);
+          box-shadow: inset 0 0 100px rgba(255,255,255,.5);
 }
 .site-wrapper-inner {
   display: table-cell;
@@ -66,10 +55,12 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
   font-weight: bold;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
 .masthead-nav > li {
   display: inline-block;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 .masthead-nav > li + li {
   margin-left: 20px;
@@ -80,13 +71,13 @@ body {
   font-size: 16px;
   font-weight: bold;
   color: #fff; /* IE8 proofing */
-  color: rgba(255,255,255,.75);
+  color: rgba(240,240,240,.75);
   border-bottom: 2px solid transparent;
 }
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
   background-color: transparent;
-  border-bottom-color: #a9a9a9;
+  border-bottom-color: #c9c9c9;
   border-bottom-color: rgba(255,255,255,.25);
 }
 .masthead-nav > .active > a,
@@ -103,41 +94,23 @@ body {
   .masthead-nav {
     float: right;
   }
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
 }
-
 
 /*
- * Cover
- */
+Features Panels
+*/
 
-.cover {
-  padding: 0 20px;
-}
-.cover .btn-lg {
-  padding: 10px 20px;
-  margin-top: 20px;
+.panel-header{
   font-weight: bold;
 }
-.cover-heading {
-  padding-bottom: 30px;
-  font-size: 60px;
-  font-weight: bold;
+.panel-body{
+  color: black;
 }
-.cover > .lead {
-  font-size: 25px;
-}
-input[type=text] {
-  height: 50px;
-  font-size: 25px;
-  padding: 10px;
-}
-.cover .alert-danger {
-  padding: 10px 20px;
-  margin-top: 30px;
-  height: fit-content;
-  font-size: 20px;
-  text-align: center;
-}
+
+
 
 
 /*
@@ -151,75 +124,84 @@ input[type=text] {
 
 
 /*
- * Suggested Room List
- */
-
-.list-group {
-  font-size: 18px;
-  width: 190px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#accordion .btn-lg {
-  padding: 10px 20px;
-  margin-top: 20px;
-  font-weight: bold;
-}
-
-
-/*
  * Affix and center
  */
 
 @media (max-width: 992px) {
+  /* Start the vertical centering */
   .site-wrapper-inner {
     position:relative;
     vertical-align: middle;
   }
+  /* Handle the widths */
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 100%;
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
+
   .cover-heading {
-    margin-top: 70px;
+    margin-top: 50px;
+  }
+
+  .cover-lead > .col-md-6 {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .cover-lead > .col-md-5 {
+    text-align: center;
+    margin-bottom: 50px;
   }
 }
 
 @media (min-width: 992px) {
   .masthead {
+    position: fixed;
     top: 0;
   }
   .mastfoot {
-    bottom: 0;
     position: fixed;
+    bottom: 0;
   }
   .masthead,
   .mastfoot,
   .cover-container {
     width: 700px;
   }
-  .cover-heading {
-    margin-top: 70px;
+
+  .cover-lead > .col-md-6 {
+    text-align: right;
   }
-  .cover-container {
-    margin-bottom: 100px;
+
+  .cover-lead > .col-md-5 {
+    text-align: left;
   }
 }
 
 @media (max-width: 768px) {
+
+  /* Start the vertical centering */
   .site-wrapper-inner {
     vertical-align: middle;
   }
+  /* Handle the widths */
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 100%;
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
+
   .cover-heading {
-    margin-top: 70px;
+    margin-top: 50px;
+  }
+
+  .cover-lead > .col-md-6 {
+    text-align: center;
+  }
+
+  .cover-lead > .col-md-5 {
+    text-align: center;
+    margin-bottom: 50px;
   }
 }
-

@@ -40,11 +40,11 @@ var echoRef = new Firebase(url);
 
 
 	/** Sets roomTitle attribute for the root room object **/
-	var roomFB = new Firebase(firebaseURL + roomId);
-	roomFB.set({roomTitle : roomId});
+	//var roomFB = new Firebase(firebaseURL + roomId);
+	//roomFB.set({roomTitle : roomId});
 
-	var rQuery = roomFB.orderByKey();
-	$scope.rooms =  $firebaseArray(roomFB);
+	//var rQuery = roomFB.orderByKey();
+	//$scope.rooms =  $firebaseArray(roomFB);
 
 
 var query = echoRef.orderByChild("order");
@@ -145,26 +145,79 @@ $scope.editTodo = function (todo) {
 };
 
 $scope.addEcho = function (todo) {
+
+
+
 	$scope.editedTodo = todo;
+
+
+ if($scope.$storage[todo.$id]== "echoed"){                              // undoing the like
+	todo.echo = todo.echo-1;
+
+	$scope.$storage[todo.$id] = "default";
+	$scope.todos.$save(todo);
+
+	return ;
+}
+
+	if($scope.$storage[todo.$id] == "nechoed"){
+		todo.necho = todo.necho + 1;
+
+	}
 	todo.echo = todo.echo + 1;
 	// Hack to order using this order.
-	todo.order = todo.order -1;
-	$scope.todos.$save(todo);
+//	todo.order = todo.order -1;
 
 	// Disable the button
 	$scope.$storage[todo.$id] = "echoed";
+	$scope.todos.$save(todo);
+
 };
 
 $scope.minusEcho = function (todo) {
-    $scope.editedTodo = todo;
+
+	$scope.editedTodo = todo;
+
+
+
+	if($scope.$storage[todo.$id] == "nechoed"){                              // undoing the dislike
+		todo.necho = todo.necho+1;
+		$scope.$storage[todo.$id] = "default";
+
+		$scope.todos.$save(todo);
+
+		return ;
+	}
+
+	if($scope.$storage[todo.$id] == "echoed"){
+		todo.echo = todo.echo - 1;
+	}
+
+
     todo.necho = todo.necho - 1;
     // Hack to order using this order.
-    todo.order = todo.order + 1;
-    $scope.todos.$save(todo);
+  //  todo.order = todo.order - 1;
 
     // Disable the button
-    $scope.$storage[todo.$id] = "echoed";
+    $scope.$storage[todo.$id] = "nechoed";
+		$scope.todos.$save(todo);
+
+
 };
+
+$scope.buttonLiked = function (id){
+	if ($scope.$storage[id] == "echoed")
+		return true;
+	return false;
+}
+
+$scope.buttonDisliked = function (id){
+	if ($scope.$storage[id] == "nechoed")
+		return true;
+	return false;
+}
+
+
 
 $scope.doneEditing = function (todo) {
 	$scope.editedTodo = null;
@@ -216,7 +269,7 @@ $scope.markAll = function (allCompleted) {
 		todo.completed = allCompleted;
 		$scope.todos.$save(todo);
 	});
-};  
+};
 
 $scope.FBLogin = function () {
 	var ref = new Firebase(firebaseURL);
@@ -295,3 +348,4 @@ angular.element($window).bind("scroll", function() {
 
 
 }]);
+
