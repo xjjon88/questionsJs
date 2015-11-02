@@ -68,7 +68,7 @@ ng-model="input.wholeMsg" autofocus></textarea>
 	<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-show="isAdmin || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden, pinnedpost: todo.pinned}">
 		<h4 class="list-group-item-heading" ng-switch on="todo.headLastChar">
 			<span class="label label-danger" ng-show="todo.newQuestion">New</span>
-			<span class="badge">{{todo.echo-    todo.necho }}</span>
+			<span class="badge">{{todo.order}}</span>
 			<!-- switch -->
 			<span ng-switch-when="?" class="glyphicon 	glyphicon-question-sign"></span>
 			<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>

@@ -24,13 +24,13 @@ todomvc.filter('questionFilter', function () {
         sorted.push(todo);
       }
 
-      // sorting new questions based on the time if echo is the same.
+      // sorting new questions based on the time if order is the same.
       // Newer ones are on the top
       newQuestions.sort(function(a, b) {
-        if (a.echo == b.echo) {
+        if (a.order == b.order) {
           return b.timestamp - a.timestamp;
         }
-        return b.echo - a.echo;
+        return b.order - a.order;
       });
     });
 
