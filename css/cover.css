@@ -151,6 +151,25 @@ input[type=text] {
 
 
 /*
+ * Suggested Room List
+ */
+
+.list-group {
+  font-size: 18px;
+  width: 190px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#accordion .btn-lg {
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+
+/*
  * Affix and center
  */
 
@@ -184,6 +203,9 @@ input[type=text] {
   }
   .cover-heading {
     margin-top: 70px;
+  }
+  .cover-container {
+    margin-bottom: 100px;
   }
 }
 
