@@ -99,40 +99,17 @@ body {
   }
 }
 
-
 /*
- * Cover
- */
+Features Panels
+*/
 
-.cover {
-  padding: 0 20px;
-  text-align: center;
-}
-
-.cover-heading {
-  padding-bottom: 30px;
-  font-size: 40px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.cover-lead > p {
-  font-size: 24px;
-}
-
-.cover-lead > .col-md-6 {
-  text-align: right;
-  color: #003f85;
+.panel-header{
   font-weight: bold;
 }
-
-.cover-lead > .col-md-1 {
-  text-align: center;
+.panel-body{
+  color: black;
 }
 
-.cover-lead > .col-md-5 {
-  text-align: left;
-}
 
 
 
