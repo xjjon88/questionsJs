@@ -30,6 +30,12 @@
 	cursor: pointer;
 	display: none;
 }
+
+.btn-xs{
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
 #toTop .fa {margin-right: 5px;}
 
 
