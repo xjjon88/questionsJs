@@ -40,6 +40,10 @@
 	color: #989898;
 	background-color: #FFFF9D;
 }
+.btn-xs{
+	margin-right: 5px;
+	margin-left: 5px;
+}
 
 /* Better Width */
 .top-btn {
