@@ -8,7 +8,7 @@ var questionList=[{
   linkedDesc: "linkedDesc",
   completed: false,
   timestamp: 0,
-  tags: ["#tag1", "#tag2"],
+  tags: "...",
   echo: 3,
   order: 3
 },{
@@ -106,22 +106,6 @@ describe('TodoCtrl', function() {
       for (var i in filteredList) {
         expect(""+filteredList[i].order).toEqual(i);
       }
-    }));
-  });
-  describe('hashFilter Testing', function() {
-    beforeEach(module(function($provide) {
-      $provide.value('version', 'TEST_VER'); //TODO: what is this provide?
-      console.log("provide.value: " + $provide.value);
-    }));
-
-    it('has a hash filter', inject(function($filter) {
-      expect($filter('hashFilter')).not.toBeNull();
-    }));
-
-    it('hash list test', inject(function(hashFilterFilter) { // need to put Filter suffix
-      var filteredList = hashFilterFilter(questionList[0].tags, 1);
-      expect(filteredList.length).toEqual(2);
-
     }));
   });
 });
