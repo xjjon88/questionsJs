@@ -65,6 +65,15 @@
 	font-size: 20px;
 }
 
+.input-reply > textarea {
+	min-width: 500px;
+	height: 100px;
+	min-height: 50px;
+	margin: 10px auto auto auto;
+	resize: horizontal;
+	font-size: 20px;
+}
+
 .input-group {
 	margin: 20px auto 20px auto;
 	max-width: 80%;

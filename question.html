@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="top-part"> <!-- New div class top-part start -->
-	<font size="10"> {{roomId}} </font>&nbsp;
+	<font size="10"> {{roomId | uppercase}} </font>&nbsp;
 
 	<!--
 
@@ -79,7 +79,7 @@ ng-model="input.wholeMsg" autofocus></textarea>
 			<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
 			<span ng-class="{completed: todo.completed}">{{todo.head}}</span>
 		</h4>
-		<p class="list-group-item-text"><span ng-bind-html="todo.trustedDesc"></span> created: {{todo.dateString}}
+		<p class="list-group-item-text"><span ng-bind-html="todo.trustedDesc"></span> <br>created: {{todo.dateString}}
 			<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
 
 			<!-- Like Button-->
@@ -112,12 +112,21 @@ ng-model="input.wholeMsg" autofocus></textarea>
 				<span class= "glyphicon glyphicon-hand-down"></span>
 				<font >Dislike</font>
 			</button>
+			<button ng-hide="todo.replying" ng-click="openReply(todo)">Reply</button>
+			<button ng-show="todo.replying" ng-click="cancelReply(todo)">Cancel</button>
             <button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-pushpin" ng-click="pinTodo(todo)">Pin to Top</button>
 			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>
 			&nbsp;
 			<button ng-show="!todo.hidden && isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-eye-close" aria-hidden="true" ng-click="hideTodo(todo)">Hide</button>
 			<button ng-show="todo.hidden" class="btn btn-default btn-xs glyphicon glyphicon-eye-open" aria-hidden="true" ng-click="hideTodo(todo)">Unhide</button>
 			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeTodo(todo)">Del</button>
+			<!--<div ng-show="todo.replying" class="input-reply">
+			
+			<form id="todo-form" ng-submit="addTodo()">
+			-
+				<textarea type="text" ng-model="input.replyMsg" autofocus></textarea>
+				<button class="btn btn-default" type="button" ng-click="addReply()">Submit</button>
+			</div><!-- /input-group -->
 		</span>
 	</div>
 

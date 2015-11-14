@@ -133,11 +133,34 @@ $scope.addTodo = function () {
 		necho: 0,
 		order: 0,
 		hidden: false,
-		pinned: false
+		pinned: false,
+		replying: false,
+		replies: [];
 	});
 	// remove the posted question in the input
 	$scope.input.wholeMsg = '';
 };
+
+
+//adds reply to todo
+/*$scope.addReply = function(todo){
+	var newReply = $scope.input.replyMsg.trim();
+
+	if(!newReply.length){
+		return;
+	}
+
+	var firstAndLast = $scope.getFirstAndRestSentence(newTodo);
+	var head = firstAndLast[0];
+	var desc = firstAndLast[1];
+
+	$scope.editedTodo = todo;
+	todo.replies[length.todo.replies]= newReply;
+	todo.replying = false;
+	$scope.todos.$save(todo);
+
+	$scope.input.replyMsg = '';
+}*/
 
 $scope.editTodo = function (todo) {
 	$scope.editedTodo = todo;
@@ -254,6 +277,20 @@ $scope.hideTodo = function(todo){
 $scope.pinTodo = function(todo){
 	$scope.editedTodo = todo;
 	todo.pinned = !todo.pinned;
+	$scope.todos.$save(todo);
+}
+
+//allows reply box to open
+$scope.openReply = function(todo){
+	$scope.editedTodo = todo;
+	todo.replying = true;
+	$scope.todos.$save(todo);
+}
+
+//cancels reply, box closes and clears data
+$scope.cancelReply = function(todo){
+	$scope.editedTodo = todo;
+	todo.replying = false;
 	$scope.todos.$save(todo);
 }
 
