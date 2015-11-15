@@ -156,16 +156,20 @@ $scope.addReply = function(todo,response){
     if(todo.replies == null){
     	todo.replies= [
         {head: response,
-         timestamp: new Date().getTime(),
+         timestamp: new Date().getTime().toString(),
          echo: 0,
-         order: 0
+         order: 0,
+         hidden: false,
+         highlighted: false
         }];}
     else{
     	todo.replies.push(
         {head: response,
-         timestamp: new Date().getTime(),
+         timestamp: new Date().getTime().toString(),
          echo: 0,
-         order: 0
+         order: 0,
+         hidden: false,
+         highlighted: false
         }
     );}
     $scope.todos.$save(todo);
@@ -188,6 +192,19 @@ $scope.buttonReply = function (id){
 	if ($scope.$storage.reply[id] == true)
 		return false;
 	return true;
+}
+
+$scope.hideReply = function(todo, reply){
+	$scope.editedTodo = todo;
+	reply.hidden = !reply.hidden;
+	$scope.todos.$save(todo);
+};
+
+//pin todo to top of question room
+$scope.highlightReply = function(todo, reply){
+	$scope.editedTodo = todo;
+	reply.highlighted = true;
+	$scope.todos.$save(todo);
 }
 
 $scope.addEcho = function (todo) {
