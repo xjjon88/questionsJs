@@ -331,17 +331,6 @@ angular.element($window).bind("scroll", function() {
 });
 
 
-	// set the default css name
-	$scope.css = 'main';
-
-	// create the list of css
-	$scope.css_list = [
-		{ name: 'Dark', url: 'main_black' },
-		{ name: 'Light', url: 'main' },
-		{ name: 'Red', url: 'main_red'}
-	];
-
-
 	$scope.example = {
 		text: '',
 		word: /^\s*\w*\s*$/
@@ -351,7 +340,28 @@ angular.element($window).bind("scroll", function() {
 		$window.location.href = 'question.html#/' + $scope.example.text;
 	}
 
+	/* Control of sorting and color scheme */
+	$scope.predicate = '-order';
 
+	$scope.changeOrder = function(predicate){
+		$scope.predicate = predicate;
+	};
+
+	$scope.css = 'main';
+
+	$scope.changeColor = function(css){
+		$scope.css = css;
+	};
+
+	$("#menu-1 > .dropdown-menu li a").click ( function(){
+		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Color Scheme: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
+		$(this).parents(".dropdown").find('.dropdown-toggle').val( $(this).data('value') );
+	});
+
+	$("#menu-2 > .dropdown-menu li a").click ( function(){
+		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Sorting: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
+		$(this).parents(".dropdown").find('.dropdown-toggle').val( $(this).data('value') );
+	});
 
 }]);
 

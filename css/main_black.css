@@ -23,25 +23,10 @@
 }
 
 
-#toTop{
-	position: fixed;
-	bottom: 95px;
-	right: 40px;
-	cursor: pointer;
-	display: none;
-}
-
-.btn-xs{
-	margin-right: 5px;
-	margin-left: 5px;
-}
-
-#toTop .fa {margin-right: 5px;}
-
-
 body{
 	background-color: black;
 	color: white;
+	padding-top: 100px;
 }
 
 .cc-container{
@@ -66,32 +51,46 @@ body{
 	background-color: #FFFF9D;
 }
 
-/* Better Width */
-.top-btn {
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-
+/* New top-part design */
 .top-part {
 	text-align: center;
-	margin-top: 20px;
 }
 
 .input-group > textarea {
 	min-width: 150px;
-	height: 100px;
+	height: 170px;
 	min-height: 50px;
+	max-height: 500px;
 	margin: 10px auto 10px auto;
 	resize: vertical;
 	font-size: 20px;
 }
 
 .input-group {
-	margin: 20px auto 20px auto;
-	max-width: 80%;
+	margin: 0px auto 20px auto;
+	width: 80%;
+	margin-top: 20px;
+	margin-bottom: 70px;
 }
 
 .list-group{
 	margin: 20px auto 20px auto;
-	max-width: 85%;
+	max-width: 80%;
+}
+
+.input-group > .group-btn > .btn-info {
+	margin-top: 15px;
+	margin-left: 10px;
+	margin-right: 10px;
+	font-size: 15px;
+}
+
+.FB-btn {
+	margin-top: 9px;
+	margin-left: 15px;
+}
+
+nav {
+	font-size: 15px;
+	vertical-align: middle;
 }
