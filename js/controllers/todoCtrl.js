@@ -155,14 +155,14 @@ $scope.addReply = function(todo,response){
     
     if(todo.replies == null){
     	todo.replies= [
-        {reply: response,
+        {head: response,
          timestamp: new Date().getTime(),
          echo: 0,
          order: 0
         }];}
     else{
     	todo.replies.push(
-        {reply: response,
+        {head: response,
          timestamp: new Date().getTime(),
          echo: 0,
          order: 0

@@ -84,7 +84,7 @@
 		<font size="10"> {{roomId|uppercase}} </font>&nbsp;
 
 		<div class="well input-group">
-			<textarea type="text" id="new-todo" class="form-control"
+			<textarea rows="3" type="text" id="new-todo" class="form-control"
 				placeholder="Search or Post Question"
 				ng-model="input.wholeMsg" autofocus>
 			</textarea>
@@ -97,7 +97,7 @@
 	</div> <!-- New top-part end -->
 
 <div class="input-group">
-	<span>Suggested searches: </span>
+	<span><h3>Suggested searches: </h3></span>
 	<span ng-repeat="todo in todos"><button class="btn btn-default btn-xs" ng-repeat="tag in todo.tags | hashFilter">{{tag}}</button></span>
 </div>
 
@@ -148,9 +148,6 @@
 			<!-- Reply and Cancel Reply buttons-->
 			
 			<button ng-show="buttonReply(todo.$id)" ng-click="openReply(todo)">Reply</button>
-			<button ng-hide="buttonReply(todo.$id)" ng-click="cancelReply(todo)">Cancel Reply</button>
-
-
 
             		<!-- New Design of login-btn group -->
 			<span class="btn-group" role="group" style="margin-left:5px">
@@ -167,12 +164,20 @@
 					<span class="glyphicon glyphicon-trash" style="margin-right:3px"></span>Del </button>
 			</span>
 
-			<!-- Reply and Cancel Reply buttons-->
-			
-			<div class="reply-input" ng-hide="buttonReply(todo.$id)">
-				<textarea name="reply" id="todo.$id" type="text" class="reply-box" ng-model="replyBox.replyText[todo.$id]"></textarea>
-				<button class="submitButton" ng-click="addReply(todo,replyBox.replyText[todo.$id])">Submit</button>
+			<!-- Reply input area-->
+
+			<div class="well input-group" ng-hide="buttonReply(todo.$id)">
+				<textarea rows="2" name="reply" id="todo.$id" type="text" class="form-control" ng-model="replyBox.replyText[todo.$id]"></textarea>
+				<div class="group-btn">
+					<button class="btn btn-info" type="button" ng-click="addReply(todo,replyBox.replyText[todo.$id])">Submit</button>
+					<button class="btn btn-info" type="button" ng-click="cancelReply(todo)">Cancel</button>
+				</div>
 			</div>
+
+			<!-- Submitted replies-->
+			<span ng-repeat="reply in todo.replies">
+				<p>{{reply.head}}</p>
+			</span>
 			
 		</span>
 	</div>
