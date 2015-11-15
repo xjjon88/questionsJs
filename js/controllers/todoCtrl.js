@@ -7,8 +7,8 @@
 * - exposes the model to the template and provides event handlers
 */
 todomvc.controller('TodoCtrl',
-['$scope', '$location', '$firebaseArray', '$sce', '$localStorage', '$window',
-function ($scope, $location, $firebaseArray, $sce, $localStorage, $window) {
+['$scope', '$location', '$firebaseArray', '$sce', '$localStorage', '$sessionStorage', '$window',
+function ($scope, $location, $firebaseArray, $sce, $localStorage, $sessionStorage, $window) {
 	// set local storage
 	$scope.$storage = $localStorage;
 
@@ -110,7 +110,7 @@ $scope.getFirstAndRestSentence = function($string) {
 	//
 $scope.addTodo = function () {
 	var newTodo = $scope.input.wholeMsg.trim();
-
+	
 	// No input, so just do nothing
 	if (!newTodo.length) {
 		return;
@@ -134,33 +134,34 @@ $scope.addTodo = function () {
 		order: 0,
 		hidden: false,
 		pinned: false,
-		replying: false,
-		replies: [];
+		replies: []
 	});
+
 	// remove the posted question in the input
 	$scope.input.wholeMsg = '';
 };
-
-
+$scope.junk = "balls";
 //adds reply to todo
-/*$scope.addReply = function(todo){
-	var newReply = $scope.input.replyMsg.trim();
-
+$scope.addReply = function(todo){
+	var newReply = $scope.input.replyMsg[todo.$id];
+	$scope.junk = newReply;
+/*
 	if(!newReply.length){
-		return;
+		newReply = "funky";
 	}
-
-	var firstAndLast = $scope.getFirstAndRestSentence(newTodo);
+	todo.field = newReply;
+	/*var firstAndLast = $scope.getFirstAndRestSentence(newTodo);
 	var head = firstAndLast[0];
-	var desc = firstAndLast[1];
-
+	var desc = firstAndLast[1];*/
+/*
 	$scope.editedTodo = todo;
-	todo.replies[length.todo.replies]= newReply;
-	todo.replying = false;
+	if(todo.replies == null)
+		todo.replies = newReply;
 	$scope.todos.$save(todo);
-
-	$scope.input.replyMsg = '';
-}*/
+	$scope.$storage.reply[todo.$id] = false;
+	$scope.reply = "";
+	*/
+}
 
 $scope.editTodo = function (todo) {
 	$scope.editedTodo = todo;
@@ -174,20 +175,20 @@ $scope.addEcho = function (todo) {
 	$scope.editedTodo = todo;
 
 
- 	if($scope.$storage[todo.$id]== "echoed"){                              // undoing the like
+ 	if($scope.$storage.echo[todo.$id]== "echoed"){                              // undoing the like
 		todo.echo = todo.echo-1;
 		todo.order = todo.order-1;
 
-		$scope.$storage[todo.$id] = "default";
+		$scope.$storage.echo[todo.$id] = "default";
 		$scope.todos.$save(todo);
 	}
 
-	else if($scope.$storage[todo.$id] == "nechoed"){
+	else if($scope.$storage.echo[todo.$id] == "nechoed"){
 		todo.necho = todo.necho - 1;
 		todo.echo = todo.echo + 1;
 		todo.order = todo.order+2;
 
-		$scope.$storage[todo.$id] = "echoed";
+		$scope.$storage.echo[todo.$id] = "echoed";
 		$scope.todos.$save(todo);
 	}
 	else{
@@ -195,7 +196,7 @@ $scope.addEcho = function (todo) {
 		todo.order = todo.order+1;
 
 	// Disable the button
-		$scope.$storage[todo.$id] = "echoed";
+		$scope.$storage.echo[todo.$id] = "echoed";
 		$scope.todos.$save(todo);
 	}
 
@@ -207,20 +208,20 @@ $scope.minusEcho = function (todo) {
 
 
 
-	if($scope.$storage[todo.$id] == "nechoed"){                              // undoing the dislike
+	if($scope.$storage.echo[todo.$id] == "nechoed"){                              // undoing the dislike
 		todo.necho = todo.necho-1;
 		todo.order = todo.order+1;
 		
-		$scope.$storage[todo.$id] = "default";
+		$scope.$storage.echo[todo.$id] = "default";
 		$scope.todos.$save(todo);
 	}
 
-	else if($scope.$storage[todo.$id] == "echoed"){
+	else if($scope.$storage.echo[todo.$id] == "echoed"){
 		todo.echo = todo.echo - 1;
 		todo.necho = todo.necho + 1;
 		todo.order = todo.order-2;
 
-		$scope.$storage[todo.$id] = "nechoed";
+		$scope.$storage.echo[todo.$id] = "nechoed";
 		$scope.todos.$save(todo);
 	}
 	else{
@@ -228,25 +229,29 @@ $scope.minusEcho = function (todo) {
 		todo.order = todo.order-1;
 
     // Disable the button
-    	$scope.$storage[todo.$id] = "nechoed";
+    	$scope.$storage.echo[todo.$id] = "nechoed";
 		$scope.todos.$save(todo);
 	}
 
 };
 
 $scope.buttonLiked = function (id){
-	if ($scope.$storage[id] == "echoed")
+	if ($scope.$storage.echo[id] == "echoed")
 		return true;
 	return false;
 }
 
 $scope.buttonDisliked = function (id){
-	if ($scope.$storage[id] == "nechoed")
+	if ($scope.$storage.echo[id] == "nechoed")
 		return true;
 	return false;
 }
 
-
+$scope.buttonReply = function (id){
+	if ($scope.$storage.reply[id] == true)
+		return false;
+	return true;
+}
 
 $scope.doneEditing = function (todo) {
 	$scope.editedTodo = null;
@@ -279,19 +284,15 @@ $scope.pinTodo = function(todo){
 	todo.pinned = !todo.pinned;
 	$scope.todos.$save(todo);
 }
-
+var replying = false;
 //allows reply box to open
 $scope.openReply = function(todo){
-	$scope.editedTodo = todo;
-	todo.replying = true;
-	$scope.todos.$save(todo);
+	$scope.$storage.reply[todo.$id] = true;
 }
 
 //cancels reply, box closes and clears data
 $scope.cancelReply = function(todo){
-	$scope.editedTodo = todo;
-	todo.replying = false;
-	$scope.todos.$save(todo);
+	$scope.$storage.reply[todo.$id] = false;
 }
 
 $scope.clearCompletedTodos = function () {

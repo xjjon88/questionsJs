@@ -59,7 +59,7 @@
 placeholder="Search or Post Question"
 ng-model="input.wholeMsg" autofocus></textarea>
 <span class="input-group-btn">
-	<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
+	<button class="btn btn-default" type="button" ng-click="addTodo(id)">Ask</button>
 </span>
 </div><!-- /input-group -->
 </div> <!-- New div class top-part end -->
@@ -70,7 +70,7 @@ ng-model="input.wholeMsg" autofocus></textarea>
 </div>
 
 <div class="list-group" id="todo-list">
-	<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-show="isAdmin || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden, pinnedpost: todo.pinned}">
+	<span class="list-group-item" ng-repeat="todo in todos | questionFilter:maxQuestion" ng-show="isAdmin || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden, pinnedpost: todo.pinned}">
 		<h4 class="list-group-item-heading" ng-switch on="todo.headLastChar">
 			<span class="label label-danger" ng-show="todo.newQuestion">New</span>
 			<span class="badge">{{todo.order}}</span>
@@ -112,26 +112,22 @@ ng-model="input.wholeMsg" autofocus></textarea>
 				<span class= "glyphicon glyphicon-hand-down"></span>
 				<font >Dislike</font>
 			</button>
-			<button ng-hide="todo.replying" ng-click="openReply(todo)">Reply</button>
-			<button ng-show="todo.replying" ng-click="cancelReply(todo)">Cancel</button>
+			<button ng-show="buttonReply(todo.$id)" ng-click="openReply(todo)">Reply</button>
+			<button ng-hide="buttonReply(todo.$id)" ng-click="cancelReply(todo)">Cancel Reply</button>
             <button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-pushpin" ng-click="pinTodo(todo)">Pin to Top</button>
 			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>
 			&nbsp;
 			<button ng-show="!todo.hidden && isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-eye-close" aria-hidden="true" ng-click="hideTodo(todo)">Hide</button>
 			<button ng-show="todo.hidden" class="btn btn-default btn-xs glyphicon glyphicon-eye-open" aria-hidden="true" ng-click="hideTodo(todo)">Unhide</button>
 			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeTodo(todo)">Del</button>
-			<!--<div ng-show="todo.replying" class="input-reply">
-			
+			<div ng-hide="buttonReply(todo.$id)" class="input-group">
+			<!--
 			<form id="todo-form" ng-submit="addTodo()">
-			-
-				<textarea type="text" ng-model="input.replyMsg" autofocus></textarea>
-				<button class="btn btn-default" type="button" ng-click="addReply()">Submit</button>
+			-->
+				<textarea type="text" id="todo.$id" class="form-control" ng-model="input.replyMsg[todo.$id]" autofocus></textarea>
+				<p>current value = {{input.replyMsg[todo.$id]}}</p>
+				<span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="addReply(todo.$id)">Submit</button></span>
 			</div><!-- /input-group -->
-		</span>
-	</div>
-
-
-
 	<!--
 
 	<div id="toTop" class="btn btn-info"><span class="fa fa-arrow-up">Back to Top</span></div>
@@ -140,6 +136,11 @@ ng-model="input.wholeMsg" autofocus></textarea>
 	class="pull-right btn btn-default glyphicon glyphicon-arrow-down"
 	type="button" ng-click="increaseMax()"> Show more</button>
 -->
+</span>
+<p>current value 2 = {{input.replyMsg}}</p>
+<p>current top = {{input.wholeMsg}}</p>
+<p>current junk= {{junk}}</p>
+</div>
 
 
 
