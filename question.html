@@ -17,52 +17,84 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 	<!-- need this for comlted ones. TODO: can I do this in bootstrap -->
 	<link rel="stylesheet" href="css/{{ css }}.css">
 
 </head>
 <body>
-<div class="top-part"> <!-- New div class top-part start -->
-	<font size="10"> {{roomId}} </font>&nbsp;
+<div class="top-part"> <!-- New Design of top-part -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
 
-	<!--
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-items" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="index.html" class="navbar-brand navbar-left" style="font-size:17px; color:#3e6487; font-weight:bold; margin-left:10px"> Ques?ion </a>
+				</div>
 
-	<a ng-class="{selected: location.path() == '/newechos'}" class="btn btn-primary" href="#/newechos">New Echos</a>
-	<a ng-class="{selected: location.path() == '/tags'}" class="btn btn-success" href="#/tags">Tags</a>
-	<a ng-class="{selected: location.path() == '/users'}" class="btn btn-info" href="#/users">Users</a>
-	<a ng-class="{selected: location.path() == '/about'}" class="btn btn-warning" href="#/about">About</a>
--->
+				<div class="collapse navbar-collapse navbar-right" id="navbar-collapse-items"> &nbsp;
+					<ul class="nav navbar-nav">
 
-<div><small>Share room url: {{absurl}}</small> &nbsp; </div>
-<div class="top-btn"> <!-- New div class top-btn start -->
-	<a class="btn btn-default" href="index.html">Main</a>
-	<button ng-hide="$authData" class="btn btn-primary left" type="button" ng-click="FBLogin()">Want Admin? Sign in with Facebook</button>
+						<li id="menu-1" class="dropdown">
+							<a href="" class="dropdown-toggle" role="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								<strong>Color Scheme: </strong>Light<span class="caret" style="margin-left:7px"></span>
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li><a href="" ng-click="changeColor('main')">Light</a></li>
+								<li><a href="" ng-click="changeColor('main_black')">Dark</a></li>
+								<li><a href="" ng-click="changeColor('main_red')">Red</a></li>
+							</ul>
+						</li>
 
+						<li id="menu-2" class="dropdown">
+							<a href="" class="dropdown-toggle" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								<strong>Sorting: </strong>Default Order<span class="caret" style="margin-left:7px"></span>
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+								<li><a href="" ng-click="changeOrder('-order')">Default Order</a></li>
+								<li><a href="" ng-click="changeOrder('-echo')">Highest Like</a></li>
+								<li><a href="" ng-click="changeOrder('-necho')">Highest Dislike</a></li>
+								<li><a href="" ng-click="changeOrder('-timestamp')">Newest Question</a></li>
+								<li><a href="" ng-click="changeOrder('timestamp')">Oldest Question</a></li>
+							</ul>
+						</li>
 
-	<!-- after login -->
-	<img ng-show="$authData" src="https://graph.facebook.com/{{$authData.facebook.id}}/picture/?type=square&return_ssl_resources=1" alt="{{name}}" />
-	{{$authData.facebook.displayName}}
-	<button ng-show="$authData" class="btn btn-primary left" type="button" ng-click="FBLogout()">Logout</button>
-</div> <!-- New div class top-btn end -->
-<div class="cc-container">
-	<p class="change-color">Change Color Scheme
-	<select class="color-options" ng-model="css" ng-options="css_l.url as css_l.name for css_l in css_list"></select>
-	</p>
-</div>
+						<li class="toTop"> <a href="" role="button" ng-click="toTop()"> Back to Top
+							<span class="glyphicon glyphicon-chevron-up" style="margin-left:5px"></span> </a>
+						</li>
 
-<div class="input-group">
-	<!--
-	<form id="todo-form" ng-submit="addTodo()">
--->
-<textarea type="text" id="new-todo" class="form-control"
-placeholder="Search or Post Question"
-ng-model="input.wholeMsg" autofocus></textarea>
-<span class="input-group-btn">
-	<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
-</span>
-</div><!-- /input-group -->
-</div> <!-- New div class top-part end -->
+						<li class="FB-btn"> <button ng-hide="$authData" class="btn btn-primary left" type="button" ng-click="FBLogin()">Want Admin? Sign in with Facebook</button> </li>
+						<li class="FB-btn"> <img ng-show="$authData" src="https://graph.facebook.com/{{$authData.facebook.id}}/picture/?type=square&return_ssl_resources=1" alt="{{name}}" />
+						 	{{$authData.facebook.displayName}}
+						 	<button ng-show="$authData" class="btn btn-primary left" type="button" ng-click="FBLogout()">Logout</button>
+						</li>
+
+					</ul>
+				</div>
+
+			</div>
+		</nav>
+
+		<font size="10"> {{roomId}} </font>&nbsp;
+
+		<div class="well input-group">
+			<textarea type="text" id="new-todo" class="form-control"
+				placeholder="Search or Post Question"
+				ng-model="input.wholeMsg" autofocus>
+			</textarea>
+			<div class="group-btn">
+				<button class="btn btn-info" type="button" ng-click="addTodo()">Ask</button>
+				<button class="btn btn-info" type="button" ng-click="input.wholeMsg=''">Clear</button>
+			</div>
+		</div><!-- input-group -->
+
+	</div> <!-- New top-part end -->
 
 <div class="input-group">
 	<span>Suggested searches: </span>
@@ -70,7 +102,7 @@ ng-model="input.wholeMsg" autofocus></textarea>
 </div>
 
 <div class="list-group" id="todo-list">
-	<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-show="isAdmin || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden, pinnedpost: todo.pinned}">
+	<span class="list-group-item" ng-repeat="todo in todos | orderBy:predicate | filter:input | questionFilter:maxQuestion" ng-show="isAdmin || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden, pinnedpost: todo.pinned}">
 		<h4 class="list-group-item-heading" ng-switch on="todo.headLastChar">
 			<span class="label label-danger" ng-show="todo.newQuestion">New</span>
 			<span class="badge">{{todo.order}}</span>
@@ -112,21 +144,28 @@ ng-model="input.wholeMsg" autofocus></textarea>
 				<span class= "glyphicon glyphicon-hand-down"></span>
 				<font >Dislike</font>
 			</button>
-            <button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-pushpin" ng-click="pinTodo(todo)">Pin to Top</button>
-			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>
-			&nbsp;
-			<button ng-show="!todo.hidden && isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-eye-close" aria-hidden="true" ng-click="hideTodo(todo)">Hide</button>
-			<button ng-show="todo.hidden" class="btn btn-default btn-xs glyphicon glyphicon-eye-open" aria-hidden="true" ng-click="hideTodo(todo)">Unhide</button>
-			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeTodo(todo)">Del</button>
+			
+            		<!-- New Design of login-btn group -->
+			<span class="btn-group" role="group" style="margin-left:5px">
+				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" ng-click="pinTodo(todo)">
+					<span class="glyphicon glyphicon-pushpin" style="margin-right:3px"></span>Pin to Top </button>
+				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" ng-click="toggleCompleted(todo)">
+					<span class="glyphicon glyphicon-check" style="margin-right:3px"></span>Toggle Completed </button>
+				&nbsp;
+				<button type="button" ng-show="!todo.hidden && isAdmin" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideTodo(todo)">
+					<span class="glyphicon glyphicon-eye-close" style="margin-right:3px"></span>Hide </button>
+				<button type="button" ng-show="todo.hidden" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideTodo(todo)">
+					<span class="glyphicon glyphicon-eye-open" style="margin-right:3px"></span>Unhide </button>
+				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" aria-hidden="true" ng-click="removeTodo(todo)">
+					<span class="glyphicon glyphicon-trash" style="margin-right:3px"></span>Del </button>
+			</span>
+			
 		</span>
 	</div>
 
 
 
-	<!--
-
-	<div id="toTop" class="btn btn-info"><span class="fa fa-arrow-up">Back to Top</span></div>
-
+<!--
 	<button ng-hide="totalCount<=maxQuestion"
 	class="pull-right btn btn-default glyphicon glyphicon-arrow-down"
 	type="button" ng-click="increaseMax()"> Show more</button>
@@ -152,6 +191,8 @@ ng-model="input.wholeMsg" autofocus></textarea>
 <script src="js/directives/todoFocus.js"></script>
 <script src="js/directives/todoBlur.js"></script>
 <script src="js/directives/todoEscape.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>
