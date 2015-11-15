@@ -498,22 +498,22 @@ describe('TodoCtrl', function() {
           $scope: scope,
         });
 
-        expect(scope.predicate).toBe(-order);
+        expect(scope.predicate).toBe("-order");
 
-        scope.changeOrder(-echo);
-        expect(scope.predicate).toBe(-echo);
+        scope.changeOrder("-echo");
+        expect(scope.predicate).toBe("-echo");
 
-        scope.changeOrder(-necho);
-        expect(scope.predicate).toBe(-necho);
+        scope.changeOrder("-necho");
+        expect(scope.predicate).toBe("-necho");
 
-        scope.changeOrder(-timestamp);
-        expect(scope.predicate).toBe(-timestamp);
+        scope.changeOrder("-timestamp");
+        expect(scope.predicate).toBe("-timestamp");
 
-        scope.changeOrder(timestamp);
-        expect(scope.predicate).toBe(timestamp);
+        scope.changeOrder("timestamp");
+        expect(scope.predicate).toBe("timestamp");
 
-        scope.changeOrder(-order);
-        expect(scope.predicate).toBe(-order);
+        scope.changeOrder("-order");
+        expect(scope.predicate).toBe("-order");
       });
 
       it('changeColor test', function(){
@@ -521,16 +521,16 @@ describe('TodoCtrl', function() {
           $scope: scope,
         });
 
-        expect(scope.css).toBe(main);
+        expect(scope.css).toBe("main");
 
-        scope.changeColor(main_black);
-        expect(scope.css).toBe(main_black);
+        scope.changeColor("main_black");
+        expect(scope.css).toBe("main_black");
 
-        scope.changeColor(main_red);
-        expect(scope.css).toBe(main_red);
+        scope.changeColor("main_red");
+        expect(scope.css).toBe("main_red");
 
-        scope.changeColor(main);
-        expect(scope.css).toBe(main);
+        scope.changeColor("main");
+        expect(scope.css).toBe("main");
       });
 
 
