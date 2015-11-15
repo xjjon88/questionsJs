@@ -38,6 +38,7 @@ $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
 var echoRef = new Firebase(url);
 $scope.replyBox = {replyText : ""};
+$scope.replying = {active : false};
 
 	/** Sets roomTitle attribute for the root room object **/
 	//var roomFB = new Firebase(firebaseURL + roomId);
@@ -174,24 +175,13 @@ $scope.addReply = function(todo,response){
     );}
     $scope.todos.$save(todo);
     $scope.replyBox.replyText[todo.$id] = "";
-    $scope.$storage.reply[todo.$id] = false;
+    $scope.replying.active[todo.$id] = false;
 };
-
-//allows reply box to open
-$scope.openReply = function(todo){
-	$scope.$storage.reply[todo.$id] = true;
-}
 
 //cancels reply, box closes and clears data
 $scope.cancelReply = function(todo){
-	$scope.replyBox.replyText[todo.$id] = ""
-	$scope.$storage.reply[todo.$id] = false;
-}
-
-$scope.buttonReply = function (id){
-	if ($scope.$storage.reply[id] == true)
-		return false;
-	return true;
+	$scope.replyBox.replyText[todo.$id] = "";
+	$scope.replying.active[todo.$id] = false;
 }
 
 $scope.hideReply = function(todo, reply){
@@ -203,7 +193,7 @@ $scope.hideReply = function(todo, reply){
 //pin todo to top of question room
 $scope.highlightReply = function(todo, reply){
 	$scope.editedTodo = todo;
-	reply.highlighted = true;
+	reply.highlighted = !reply.highlighted;
 	$scope.todos.$save(todo);
 }
 

@@ -147,7 +147,7 @@
 
 			<!-- Reply and Cancel Reply buttons-->
 			
-			<button ng-show="buttonReply(todo.$id)" ng-click="openReply(todo)">Reply</button>
+			<button class="replyButton" ng-show="!replying.active[todo.$id]" ng-click="replying.active[todo.$id]=true">Reply</button>
 
             		<!-- New Design of login-btn group -->
 			<span class="btn-group" role="group" style="margin-left:5px">
@@ -166,7 +166,7 @@
 
 			<!-- Reply input area-->
 
-			<div class="well input-group" ng-hide="buttonReply(todo.$id)">
+			<div class="well input-group" ng-hide="!replying.active[todo.$id]">
 				<textarea rows="2" name="reply" id="todo.$id" type="text" class="form-control" ng-model="replyBox.replyText[todo.$id]"></textarea>
 				<div class="group-btn">
 					<button class="btn btn-info" type="button" ng-click="addReply(todo,replyBox.replyText[todo.$id])">Submit</button>
@@ -176,7 +176,7 @@
 
 			<!-- Submitted replies-->
 			<div class="list-group">
-			<span class="list-group-item" ng-repeat="reply in todo.replies" ng-show="isAdmin || !reply.hidden" ng-class"{hiddenpost: reply.hidden, pinnedpost: reply.highlighted}">
+			<span class="list-group-item" ng-repeat="reply in todo.replies" ng-show="isAdmin || !reply.hidden" ng-class="{hiddenpost: reply.hidden, pinnedpost: reply.highlighted}">
 				<h4 class="list-group-item-heading">
 				<span>{{reply.head}}</span>
 				</h4>

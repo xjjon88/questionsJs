@@ -29,6 +29,10 @@ body{
 	padding-top: 100px;
 }
 
+.replyButton{
+	color: black;
+}
+
 .cc-container{
 	background-color: #B80000;
 	color: white;
