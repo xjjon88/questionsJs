@@ -81,10 +81,10 @@
 			</div>
 		</nav>
 
-		<font size="10"> {{roomId}} </font>&nbsp;
+		<font size="10"> {{roomId|uppercase}} </font>&nbsp;
 
 		<div class="well input-group">
-			<textarea type="text" id="new-todo" class="form-control"
+			<textarea rows="3" type="text" id="new-todo" class="form-control"
 				placeholder="Search or Post Question"
 				ng-model="input.wholeMsg" autofocus>
 			</textarea>
@@ -97,7 +97,7 @@
 	</div> <!-- New top-part end -->
 
 <div class="input-group">
-	<span>Suggested searches: </span>
+	<span><h3>Suggested searches: </h3></span>
 	<span ng-repeat="todo in todos"><button class="btn btn-default btn-xs" ng-repeat="tag in todo.tags | hashFilter">{{tag}}</button></span>
 </div>
 
@@ -144,7 +144,11 @@
 				<span class= "glyphicon glyphicon-hand-down"></span>
 				<font >Dislike</font>
 			</button>
+
+			<!-- Reply and Cancel Reply buttons-->
 			
+			<button class="replyButton" ng-show="!replying.active[todo.$id]" ng-click="replying.active[todo.$id]=true">Reply</button>
+
             		<!-- New Design of login-btn group -->
 			<span class="btn-group" role="group" style="margin-left:5px">
 				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" ng-click="pinTodo(todo)">
@@ -159,10 +163,34 @@
 				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" aria-hidden="true" ng-click="removeTodo(todo)">
 					<span class="glyphicon glyphicon-trash" style="margin-right:3px"></span>Del </button>
 			</span>
+
+			<!-- Reply input area-->
+
+			<div class="well input-group" ng-hide="!replying.active[todo.$id]">
+				<textarea rows="2" name="reply" id="todo.$id" type="text" class="form-control" ng-model="replyBox.replyText[todo.$id]"></textarea>
+				<div class="group-btn">
+					<button class="btn btn-info" type="button" ng-click="addReply(todo,replyBox.replyText[todo.$id])">Submit</button>
+					<button class="btn btn-info" type="button" ng-click="cancelReply(todo)">Cancel</button>
+				</div>
+			</div>
+
+			<!-- Submitted replies-->
+			<div class="list-group">
+			<span class="list-group-item" ng-repeat="reply in todo.replies" ng-show="isAdmin || !reply.hidden" ng-class="{hiddenpost: reply.hidden, pinnedpost: reply.highlighted}">
+				<h4 class="list-group-item-heading">
+				<span>{{reply.head}}</span>
+				</h4>
+				<button type="button" ng-show="!reply.hidden && isAdmin" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideReply(todo,reply)">
+					<span class="glyphicon glyphicon-eye-close" style="margin-right:3px"></span>Hide </button>
+				<button type="button" ng-show="reply.hidden" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideReply(todo,reply)">
+					<span class="glyphicon glyphicon-eye-open" style="margin-right:3px"></span>Unhide </button>
+				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" ng-click="highlightReply(todo,reply)">
+					<span class="glyphicon glyphicon-star" style="margin-right:3px"></span>Highlight</button>
+			</span>
+			</div>
 			
 		</span>
 	</div>
-
 
 
 <!--

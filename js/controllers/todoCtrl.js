@@ -37,7 +37,8 @@ var firebaseURL = "https://xjquestions.firebaseio.com/";
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
 var echoRef = new Firebase(url);
-
+$scope.replyBox = {replyText : ""};
+$scope.replying = {active : false};
 
 	/** Sets roomTitle attribute for the root room object **/
 	//var roomFB = new Firebase(firebaseURL + roomId);
@@ -133,7 +134,8 @@ $scope.addTodo = function () {
 		necho: 0,
 		order: 0,
 		hidden: false,
-		pinned: false
+		pinned: false,
+		replies: []
 	});
 	// remove the posted question in the input
 	$scope.input.wholeMsg = '';
@@ -143,6 +145,57 @@ $scope.editTodo = function (todo) {
 	$scope.editedTodo = todo;
 	$scope.originalTodo = angular.extend({}, $scope.editedTodo);
 };
+
+$scope.addReply = function(todo,response){
+    //If empty reply, do nothing
+    if (!response.length) {
+		return;
+	}
+
+    $scope.editedTodo = todo;
+    
+    if(todo.replies == null){
+    	todo.replies= [
+        {head: response,
+         timestamp: new Date().getTime().toString(),
+         echo: 0,
+         order: 0,
+         hidden: false,
+         highlighted: false
+        }];}
+    else{
+    	todo.replies.push(
+        {head: response,
+         timestamp: new Date().getTime().toString(),
+         echo: 0,
+         order: 0,
+         hidden: false,
+         highlighted: false
+        }
+    );}
+    $scope.todos.$save(todo);
+    $scope.replyBox.replyText[todo.$id] = "";
+    $scope.replying.active[todo.$id] = false;
+};
+
+//cancels reply, box closes and clears data
+$scope.cancelReply = function(todo){
+	$scope.replyBox.replyText[todo.$id] = "";
+	$scope.replying.active[todo.$id] = false;
+}
+
+$scope.hideReply = function(todo, reply){
+	$scope.editedTodo = todo;
+	reply.hidden = !reply.hidden;
+	$scope.todos.$save(todo);
+};
+
+//pin todo to top of question room
+$scope.highlightReply = function(todo, reply){
+	$scope.editedTodo = todo;
+	reply.highlighted = !reply.highlighted;
+	$scope.todos.$save(todo);
+}
 
 $scope.addEcho = function (todo) {
 

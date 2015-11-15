@@ -29,6 +29,10 @@ body{
 	padding-top: 100px;
 }
 
+.replyButton{
+	color: black;
+}
+
 .cc-container{
 	background-color: #B80000;
 	color: white;
@@ -60,21 +64,16 @@ body{
 	text-align: center;
 }
 
-.input-group > textarea {
-	min-width: 150px;
-	height: 170px;
-	min-height: 50px;
-	max-height: 500px;
+.input-group {
 	margin: 10px auto 10px auto;
-	resize: vertical;
-	font-size: 20px;
+	width: 80%;
 }
 
-.input-group {
-	margin: 0px auto 20px auto;
-	width: 80%;
-	margin-top: 20px;
-	margin-bottom: 70px;
+.input-group > textarea {
+	min-width: 150px;
+	max-height: 500px;
+	resize: vertical;
+	font-size: 20px;
 }
 
 .list-group{
