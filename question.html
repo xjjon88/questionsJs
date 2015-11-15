@@ -147,8 +147,8 @@
 
 			<!-- Reply and Cancel Reply buttons-->
 			
-			<button ng-show="true" >Reply</button>
-			<button ng-hide="true" >Cancel Reply</button>
+			<button ng-show="buttonReply(todo.$id)" ng-click="openReply(todo)">Reply</button>
+			<button ng-hide="buttonReply(todo.$id)" ng-click="cancelReply(todo)">Cancel Reply</button>
 
 
 
@@ -166,10 +166,16 @@
 				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" aria-hidden="true" ng-click="removeTodo(todo)">
 					<span class="glyphicon glyphicon-trash" style="margin-right:3px"></span>Del </button>
 			</span>
+
+			<!-- Reply and Cancel Reply buttons-->
+			
+			<div class="reply-input" ng-hide="buttonReply(todo.$id)">
+				<textarea name="reply" id="todo.$id" type="text" class="reply-box" ng-model="replyBox.replyText[todo.$id]"></textarea>
+				<button class="submitButton" ng-click="addReply(todo,replyBox.replyText[todo.$id])">Submit</button>
+			</div>
 			
 		</span>
 	</div>
-
 
 
 <!--

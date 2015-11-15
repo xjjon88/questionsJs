@@ -37,7 +37,7 @@ var firebaseURL = "https://xjquestions.firebaseio.com/";
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
 var echoRef = new Firebase(url);
-
+$scope.replyBox = {replyText : ""};
 
 	/** Sets roomTitle attribute for the root room object **/
 	//var roomFB = new Firebase(firebaseURL + roomId);
@@ -133,7 +133,8 @@ $scope.addTodo = function () {
 		necho: 0,
 		order: 0,
 		hidden: false,
-		pinned: false
+		pinned: false,
+		replies: []
 	});
 	// remove the posted question in the input
 	$scope.input.wholeMsg = '';
@@ -143,6 +144,51 @@ $scope.editTodo = function (todo) {
 	$scope.editedTodo = todo;
 	$scope.originalTodo = angular.extend({}, $scope.editedTodo);
 };
+
+$scope.addReply = function(todo,response){
+    //If empty reply, do nothing
+    if (!response.length) {
+		return;
+	}
+
+    $scope.editedTodo = todo;
+    
+    if(todo.replies == null){
+    	todo.replies= [
+        {reply: response,
+         timestamp: new Date().getTime(),
+         echo: 0,
+         order: 0
+        }];}
+    else{
+    	todo.replies.push(
+        {reply: response,
+         timestamp: new Date().getTime(),
+         echo: 0,
+         order: 0
+        }
+    );}
+    $scope.todos.$save(todo);
+    $scope.replyBox.replyText[todo.$id] = "";
+    $scope.$storage.reply[todo.$id] = false;
+};
+
+//allows reply box to open
+$scope.openReply = function(todo){
+	$scope.$storage.reply[todo.$id] = true;
+}
+
+//cancels reply, box closes and clears data
+$scope.cancelReply = function(todo){
+	$scope.replyBox.replyText[todo.$id] = ""
+	$scope.$storage.reply[todo.$id] = false;
+}
+
+$scope.buttonReply = function (id){
+	if ($scope.$storage.reply[id] == true)
+		return false;
+	return true;
+}
 
 $scope.addEcho = function (todo) {
 
