@@ -14,7 +14,45 @@ function ($scope, $location, $firebaseArray, $sce, $localStorage, $window) {
 
 	var scrollCountDelta = 10;
 	$scope.maxQuestion = scrollCountDelta;
-
+	var filterWords = [
+		"anal",
+	  "anus",
+	  "ass",
+	  "bastard",
+	  "bitch",
+	  "boob",
+	  "cock",
+	  "cum",
+	  "cunt",
+	  "dick",
+	  "dildo",
+	  "dyke",
+	  "fag",
+	  "faggot",
+	  "fuck",
+	  "fuk",
+	  "handjob",
+	  "homo",
+	  "jizz",
+	  "kike",
+	  "kunt",
+	  "muff",
+	  "nigger",
+	  "penis",
+	  "piss",
+	  "poop",
+	  "pussy",
+	  "queer",
+	  "rape",
+	  "semen",
+	  "sex",
+	  "shit",
+	  "slut",
+	  "titties",
+	  "twat",
+	  "vagina",
+	  "vulva",
+	  "wank"];
 	/*
 	$(window).scroll(function(){
 	if($(window).scrollTop() > 0) {
@@ -405,6 +443,45 @@ angular.element($window).bind("scroll", function() {
 	$scope.changeColor = function(css){
 		$scope.css = css;
 	};
+	
+		$scope.BadWordFilter= function(s){
+
+	function wordFilter(str) {
+	var i;
+	for(i=0;i<filterWords.length;i++)	{
+			var re = new RegExp(filterWords[i],"gi");
+			var replacement = '*'.repeat(filterWords[i].length);
+			str = str.replace(re,replacement);
+
+
+	}
+	return str;
+
+	}
+	return wordFilter(s);
+
+
+	};
+
+
+
+
+	$scope.isWordFilterOn = function(){
+		if ($scope.WordfilterFlag == 'on') {
+			return true;
+		}
+		else return false;
+	}
+	$scope.WordfilterFlag= 'on';
+	$scope.changeFilterFlag = function(WordfilterFlag){
+		$scope.WordfilterFlag = WordfilterFlag;
+	};
+
+	$("#menu-0 > .dropdown-menu li a").click ( function(){
+		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Filter Mode: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
+		$(this).parents(".dropdown").find('.dropdown-toggle').val( $(this).data('value') );
+	});
+
 
 	$("#menu-1 > .dropdown-menu li a").click ( function(){
 		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Color Scheme: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
