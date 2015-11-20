@@ -91,8 +91,6 @@ var query = echoRef.orderByChild("order");
 //.limitToFirst(1000);
 $scope.todos = $firebaseArray(query);
 
-
-//$scope.input.wholeMsg = '';
 $scope.editedTodo = null;
 
 // pre-precessing for collection
@@ -147,8 +145,7 @@ $scope.getFirstAndRestSentence = function($string) {
 };
 
 $scope.hashToBox = function($tag){
-	//$scope.input.wholeMsg = $scope.input.wholeMsg + ' ' + tag;
-	$scope.input.wholeMsg = $tag;
+	$scope.input = {wholeMsg: $tag};
 }
 
 	//
