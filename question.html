@@ -108,7 +108,7 @@
 
 <div class="input-group">
 	<span><h3>Suggested searches: </h3></span>
-	<span ng-repeat="todo in todos"><button class="btn btn-default btn-xs" ng-repeat="tag in todo.tags | hashFilter">{{tag}}</button></span>
+	<span ng-repeat="todo in todos"><button class="btn btn-default btn-xs" ng-repeat="tag in todo.tags | hashFilter" ng-click="hashToBox(tag)">{{tag}}</button></span>
 </div>
 
 <div class="list-group" id="todo-list">

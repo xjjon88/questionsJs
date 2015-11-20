@@ -146,6 +146,11 @@ $scope.getFirstAndRestSentence = function($string) {
 	return [head, desc];
 };
 
+$scope.hashToBox = function($tag){
+	//$scope.input.wholeMsg = $scope.input.wholeMsg + ' ' + tag;
+	$scope.input.wholeMsg = $tag;
+}
+
 	//
 $scope.addTodo = function () {
 	var newTodo = $scope.input.wholeMsg.trim();
