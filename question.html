@@ -45,8 +45,8 @@
 								<strong>Classroom Mode: </strong>Off<span class="caret" style="margin-left:7px"></span>
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-								<li><a href="" ng-click="classRoomMode('on')">On</a></li>
-								<li><a href="" ng-click="classRoomMode('off')">Off</a></li>
+								<li><a href="" ng-click="classRoomMode(true)">On</a></li>
+								<li><a href="" ng-click="classRoomMode(false)">Off</a></li>
 							</ul>
 						</li>
 
@@ -121,7 +121,7 @@
 </div>
 
 <div class="list-group" id="todo-list">
-	<span class="list-group-item" ng-repeat="todo in todos | orderBy:predicate | filter:input | questionFilter:maxQuestion" ng-show="isAdmin || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden, pinnedpost: todo.pinned}">
+	<span class="list-group-item" ng-repeat="todo in todos | orderBy:predicate | filter:input | questionFilter:maxQuestion" ng-show="(isAdmin && !inClassview) || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden, pinnedpost: todo.pinned}">
 		<h4 class="list-group-item-heading" ng-switch on="todo.headLastChar">
 			<span class="label label-danger" ng-show="todo.newQuestion">New</span>
 			<span class="badge">{{todo.order}}</span>
@@ -131,7 +131,7 @@
 			<span ng-show="isWordFilterOn()"ng-class="{completed: todo.completed}">{{BadWordFilter(todo.head)}}</span>
 			<span ng-show="!isWordFilterOn()"ng-class="{completed: todo.completed}">{{(todo.head)}}</span>
 		</h4>
-		<p class="list-group-item-text"><span ng-bind-html="todo.trustedDesc"></span><br> created: {{todo.dateString}}
+		<p class="list-group-item-text"><br><span ng-bind-html="todo.trustedDesc"></span><br><br> created: {{todo.dateString}}
 			<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
 
 			<!-- Like Button-->
@@ -184,6 +184,9 @@
 					<span class="glyphicon glyphicon-trash" style="margin-right:3px"></span>Del </button>
 			</span>
 
+			
+			<button data-toggle="modal" ng-show="inClassview" href="#myModal" ng-click="selectQuestion(todo)">Classroom View</button>
+
 			<!-- Reply input area-->
 
 			<div class="well input-group" ng-hide="!replying.active[todo.$id]">
@@ -196,7 +199,7 @@
 
 			<!-- Submitted replies-->
 			<div class="list-group">
-			<span class="list-group-item" ng-repeat="reply in todo.replies" ng-show="isAdmin || !reply.hidden" ng-class="{hiddenpost: reply.hidden, pinnedpost: reply.highlighted}">
+			<span class="list-group-item" ng-repeat="reply in todo.replies" ng-show="(isAdmin && !inClassview) || !reply.hidden" ng-class="{hiddenpost: reply.hidden, pinnedpost: reply.highlighted}">
 				<h4 class="list-group-item-heading">
 				<span ng-show="isWordFilterOn()">{{BadWordFilter(reply.head)}}</span>
 				<span ng-show="!isWordFilterOn()">{{reply.head}}</span>
@@ -213,6 +216,113 @@
 
 		</span>
 	</div>
+
+	<!-- CLASSROOM VIEW, ADAPTED FROM BOOTPLY USER Carol Skelly -->
+
+<div class="modal" id="myModal">
+	<div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="list-group-item-heading" ng-switch on="activeTodo.headLastChar">
+			<span class="label label-danger" ng-show="activeTodo.newQuestion">New</span>
+			<span class="badge">{{activeTodo.order}}</span>
+			<!-- switch -->
+			<span ng-switch-when="?" class="glyphicon 	glyphicon-question-sign"></span>
+			<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
+			<span ng-show="isWordFilterOn()"ng-class="{completed: activeTodo.completed}">{{BadWordFilter(activeTodo.head)}}</span>
+			<span ng-show="!isWordFilterOn()"ng-class="{completed: activeTodo.completed}">{{(activeTodo.head)}}</span>
+		</h4>
+        </div><div class="container"></div>
+        <div class="modal-body">
+        	
+		<p class="list-group-item-text"><span ng-bind-html="activeTodo.trustedDesc"></span><br><br> created: {{activeTodo.dateString}}
+			<span ng-show="activeTodo.tags">tags: {{activeTodo.tags}}</span></p>
+
+			<!-- Like Button-->
+			<button ng-show ="buttonLiked(activeTodo.$id)" type="button" style= "width: 80px;background-color:green;color:white; border:1px #000000 solid;"  ng-click="addEcho(activeTodo)" >
+
+					<font >Like</font>
+					<span class= "glyphicon glyphicon-hand-up"></span>
+			</button>
+
+
+			<button ng-hide ="buttonLiked(activeTodo.$id)" type="button" style= "width: 80px;background-color:white;color:green; border: 1px #00FF00 solid;"  ng-click="addEcho(activeTodo)"  >
+				<font >Like</font>
+				<span class= "glyphicon glyphicon-hand-up"></span>
+			</button>
+			<!-- Like/Dislike Amount-->
+
+			<span class ="label label-success">{{activeTodo.echo}}</span>
+			<font> : </font>
+			<span class ="label label-danger">{{activeTodo.necho}}</span>
+
+			<!-- Dislike button-->
+
+			<button ng-show ="buttonDisliked(activeTodo.$id)" type="button" style= "width: 80px;background-color:red;color:white;border:1px #000000 solid;" ng-click="minusEcho(activeTodo)"  >
+						<span class= "glyphicon glyphicon-hand-down"></span>
+				<font >Dislike</font>
+			</button>
+
+
+			<button ng-hide ="buttonDisliked(activeTodo.$id)" type="button" style= "width: 80px;background-color:white;color:red;border:1px #FF0000 solid;" ng-click="minusEcho(activeTodo)"  >
+				<span class= "glyphicon glyphicon-hand-down"></span>
+				<font >Dislike</font>
+			</button>
+
+			<!-- Reply and Cancel Reply buttons-->
+
+			<button class="replyButton" ng-show="!replying.active[activeTodo.$id]" ng-click="replying.active[activeTodo.$id]=true">Reply</button>
+
+            		<!-- New Design of login-btn group -->
+			<span class="btn-group" role="group" style="margin-left:5px">
+				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" ng-click="pinTodo(activeTodo)">
+					<span class="glyphicon glyphicon-pushpin" style="margin-right:3px"></span>Pin to Top </button>
+				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" ng-click="toggleCompleted(activeTodo)">
+					<span class="glyphicon glyphicon-check" style="margin-right:3px"></span>Toggle Completed </button>
+				&nbsp;
+				<button type="button" ng-show="!activeTodo.hidden && isAdmin" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideTodo(activeTodo)">
+					<span class="glyphicon glyphicon-eye-close" style="margin-right:3px"></span>Hide </button>
+				<button type="button" ng-show="activeTodo.hidden" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideTodo(activeTodo)">
+					<span class="glyphicon glyphicon-eye-open" style="margin-right:3px"></span>Unhide </button>
+				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" aria-hidden="true" ng-click="removeTodo(activeTodo)">
+					<span class="glyphicon glyphicon-trash" style="margin-right:3px"></span>Del </button>
+			</span>
+
+			<!-- Submitted replies-->
+			<div class="list-group">
+			<span class="list-group-item" ng-repeat="reply in activeTodo.replies" ng-show="(isAdmin && !inClassview) || !reply.hidden" ng-class="{hiddenpost: reply.hidden, pinnedpost: reply.highlighted}">
+				<h4 class="list-group-item-heading">
+				<span ng-show="isWordFilterOn()">{{BadWordFilter(reply.head)}}</span>
+				<span ng-show="!isWordFilterOn()">{{reply.head}}</span>
+
+				</h4>
+				<button type="button" ng-show="!reply.hidden && isAdmin" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideReply(activeTodo,reply)">
+					<span class="glyphicon glyphicon-eye-close" style="margin-right:3px"></span>Hide </button>
+				<button type="button" ng-show="reply.hidden" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideReply(activeTodo,reply)">
+					<span class="glyphicon glyphicon-eye-open" style="margin-right:3px"></span>Unhide </button>
+				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" ng-click="highlightReply(activeTodo,reply)">
+					<span class="glyphicon glyphicon-star" style="margin-right:3px"></span>Highlight</button>
+			</span>
+			</div>
+			<!-- Reply input area-->
+
+			<div class="well input-group" ng-hide="!replying.active[activeTodo.$id]">
+				<textarea rows="2" name="reply" id="activeTodo.$id" type="text" class="form-control" ng-model="replyBox.replyText[activeTodo.$id]"></textarea>
+				<div class="group-btn">
+					<button class="btn btn-info" type="button" ng-click="addReply(activeTodo,replyBox.replyText[activeTodo.$id])">Submit</button>
+					<button class="btn btn-info" type="button" ng-click="cancelReply(activeTodo)">Cancel</button>
+				</div>
+			</div>
+        </div>
+        <div class="modal-footer">
+          <button href="#" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
 
 
 <!--

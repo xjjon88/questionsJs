@@ -462,11 +462,7 @@ angular.element($window).bind("scroll", function() {
 	}
 	return wordFilter(s);
 
-
 	};
-
-
-
 
 	$scope.isWordFilterOn = function(){
 		if ($scope.WordfilterFlag == 'on') {
@@ -474,17 +470,36 @@ angular.element($window).bind("scroll", function() {
 		}
 		else return false;
 	}
-	$scope.WordfilterFlag= 'on';
-	$scope.changeFilterFlag = function(WordfilterFlag){
-		$scope.WordfilterFlag = WordfilterFlag;
-	};
+
+	//CLASSVIEW SECTION
+
+	$('#openBtn').click(function(){
+	$('#myModal').modal({show:true})
+});
+
+	$scope.inClassview = false;
+	$scope.classRoomMode = function(mode){
+			$scope.inClassview = mode;
+	}
+
+	$scope.activeTodo = null;
+	$scope.selectQuestion = function(todo){
+		$scope.activeTodo = todo;
+	}
 
 	$("#classview > .dropdown-menu li a").click ( function(){
 		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Classroom Mode: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
 		$(this).parents(".dropdown").find('.dropdown-toggle').val( $(this).data('value') );
 	});
 
-	$("#menu-0 > .dropdown-menu li a").click ( function(){
+	//END CLASSVIEW SECTION
+
+	$scope.WordfilterFlag= 'on';
+	$scope.changeFilterFlag = function(WordfilterFlag){
+		$scope.WordfilterFlag = WordfilterFlag;
+	};
+
+		$("#menu-0 > .dropdown-menu li a").click ( function(){
 		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Bad Words Filter Mode: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
 		$(this).parents(".dropdown").find('.dropdown-toggle').val( $(this).data('value') );
 	});
