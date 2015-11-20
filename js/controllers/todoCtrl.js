@@ -479,8 +479,13 @@ angular.element($window).bind("scroll", function() {
 		$scope.WordfilterFlag = WordfilterFlag;
 	};
 
+	$("#classview > .dropdown-menu li a").click ( function(){
+		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Classroom Mode: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
+		$(this).parents(".dropdown").find('.dropdown-toggle').val( $(this).data('value') );
+	});
+
 	$("#menu-0 > .dropdown-menu li a").click ( function(){
-		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Filter Mode: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
+		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Bad Words Filter Mode: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
 		$(this).parents(".dropdown").find('.dropdown-toggle').val( $(this).data('value') );
 	});
 

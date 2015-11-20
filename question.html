@@ -40,14 +40,23 @@
 
 				<div class="collapse navbar-collapse navbar-right" id="navbar-collapse-items"> &nbsp;
 					<ul class="nav navbar-nav">
+						<li id="classview" class="dropdown">
+							<a href="" class="dropdown-toggle" role="button" id="dropdownclassview" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								<strong>Classroom Mode: </strong>Off<span class="caret" style="margin-left:7px"></span>
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li><a href="" ng-click="classRoomMode('on')">On</a></li>
+								<li><a href="" ng-click="classRoomMode('off')">Off</a></li>
+							</ul>
+						</li>
 
 						<li id="menu-0" class="dropdown">
 							<a href="" class="dropdown-toggle" role="button" id="dropdownMenu0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-								<strong>Bad Words Filter Mode:</strong>On<span class="caret" style="margin-left:7px"></span>
+								<strong>Bad Words Filter Mode: </strong>On<span class="caret" style="margin-left:7px"></span>
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-								<li><a href="" ng-click="changeFilterFlag('on')">ON</a></li>
-								<li><a href="" ng-click="changeFilterFlag('off')">OFF</a></li>
+								<li><a href="" ng-click="changeFilterFlag('on')">On</a></li>
+								<li><a href="" ng-click="changeFilterFlag('off')">Off</a></li>
 							</ul>
 						</li>
 
