@@ -139,14 +139,11 @@
 		<p class="list-group-item-text"><br><span ng-show="!isWordFilterOn()">{{todo.desc}}</span>
 																				<span ng-show="isWordFilterOn()">{{BadWordFilter(todo.desc)}}</span><br><br> created: {{todo.dateString}}
 
-																						<span ng-show="todo.tags">tags:</span>
-
-																						<span ng-repeat="tag in todo.tags | hashFilter">
+																					<span ng-show="todo.tags">tags:</span>
+																					<span ng-repeat="tag in todo.tags | hashFilter">
 																							<span ng-show="isWordFilterOn()&&NotContainBadWords(tag)"> [{{tag}}]</span>
 																							<span ng-show="!isWordFilterOn()" > [{{tag}}]</span>
-
-
-																					</span>
+																					</span></p>
 
 			<!-- Like Button-->
 			<br>
@@ -255,16 +252,11 @@
 																		<span class="desc" ng-show="isWordFilterOn()">{{BadWordFilter(activeTodo.desc)}}</span>
 																		<br><br> created: {{activeTodo.dateString}}
 																		<span ng-show="activeTodo.tags">tags:</span>
+																			<span ng-repeat="tag in activeTodo.tags | hashFilter">
+																				<span ng-show="isWordFilterOn()&&NotContainBadWords(tag)"> [{{tag}}]</span>
+																				<span ng-show="!isWordFilterOn()" > [{{tag}}]</span>
+																			</span></p>
 
-																		<span ng-repeat="tag in activeTodo.tags | hashFilter">
-																			<span ng-show="isWordFilterOn()&&NotContainBadWords(tag)"> [{{tag}}]</span>
-																			<span ng-show="!isWordFilterOn()" > [{{tag}}]</span>
-
-
-																	</span>
-
-
-		</p>
 
 
 
