@@ -117,7 +117,12 @@
 
 <div class="input-group">
 	<span><h3>Suggested searches: </h3></span>
-	<span ng-repeat="todo in todos"><button class="btn btn-default btn-xs" ng-repeat="tag in todo.tags | hashFilter" ng-click="hashToBox(tag)">{{tag}}</button></span>
+
+		<span ng-repeat="todo in todos">
+			<span ng-repeat="tag in todo.tags | hashFilter">
+				<button ng-if="NotContainBadWords(tag)" class="btn btn-default btn-xs" ng-click="hashToBox(tag)" >{{tag}}</button>
+			</span>
+		</span>
 </div>
 
 <div class="list-group" id="todo-list">
@@ -133,7 +138,12 @@
 		</h4>
 		<p class="list-group-item-text"><br><span ng-show="!isWordFilterOn()">{{todo.desc}}</span>
 																				<span ng-show="isWordFilterOn()">{{BadWordFilter(todo.desc)}}</span><br><br> created: {{todo.dateString}}
-			<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
+
+																					<span ng-show="todo.tags">tags:</span>
+																					<span ng-repeat="tag in todo.tags | hashFilter">
+																							<span ng-show="isWordFilterOn()&&NotContainBadWords(tag)"> [{{tag}}]</span>
+																							<span ng-show="!isWordFilterOn()" > [{{tag}}]</span>
+																					</span></p>
 
 			<!-- Like Button-->
 			<br>
@@ -239,8 +249,19 @@
         <div class="modal-body">
 
 		<p class="list-group-item-text"><span class="desc" ng-show="!isWordFilterOn()">{{activeTodo.desc}}</span>
-																		<span class="desc" ng-show="isWordFilterOn()">{{BadWordFilter(activeTodo.desc)}}</span><br><br> created: {{activeTodo.dateString}}
-			<span ng-show="activeTodo.tags">tags: {{activeTodo.tags}}</span></p>
+																		<span class="desc" ng-show="isWordFilterOn()">{{BadWordFilter(activeTodo.desc)}}</span>
+																		<br><br> created: {{activeTodo.dateString}}
+																		<span ng-show="activeTodo.tags">tags:</span>
+																			<span ng-repeat="tag in activeTodo.tags | hashFilter">
+																				<span ng-show="isWordFilterOn()&&NotContainBadWords(tag)"> [{{tag}}]</span>
+																				<span ng-show="!isWordFilterOn()" > [{{tag}}]</span>
+																			</span></p>
+
+
+
+
+
+
 
 			<!-- Like Button-->
 			<br>
