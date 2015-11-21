@@ -474,8 +474,12 @@ angular.element($window).bind("scroll", function() {
 	//CLASSVIEW SECTION
 
 	$('#openBtn').click(function(){
-	$('#myModal').modal({show:true})
-});
+
+	$('#myModal').modal({
+        backdrop: true,
+        keyboard: true
+    })
+    });
 
 	$scope.inClassview = false;
 	$scope.classRoomMode = function(mode){

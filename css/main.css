@@ -3,13 +3,6 @@
 	text-decoration: line-through;
 }
 
-.modal:nth-of-type(even) {
-    z-index: 1042 !important;
-}
-.modal-backdrop.in:nth-of-type(even) {
-    z-index: 1041 !important;
-}
-
 .icon{display: inline-block;}
 .icon,
 .icon + span{vertical-align: middle;}
@@ -48,6 +41,23 @@
 	margin: 10px auto 10px auto;
 	width: 80%;
 }
+/*.modal{
+	width:1600px;
+	margin-left: -300px;
+}
+.modal-content{
+	width:1600px;
+	}	
+.modal-body{
+	width:1600px;
+	}
+.modal-footer{
+	width:1600px;
+	}
+.modal-header{
+	width:1600px;
+	font-size: 360px;
+}*/
 
 .input-group > textarea {
 	min-width: 150px;

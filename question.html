@@ -121,7 +121,7 @@
 </div>
 
 <div class="list-group" id="todo-list">
-	<span class="list-group-item" ng-repeat="todo in todos | orderBy:predicate | filter:input | questionFilter:maxQuestion" ng-show="(isAdmin && !inClassview) || !todo.hidden" ng-class="{completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden, pinnedpost: todo.pinned}">
+	<span class="list-group-item" ng-repeat="todo in todos | orderBy:predicate | filter:input | questionFilter:maxQuestion" ng-show="(isAdmin && !inClassview) || !todo.hidden" ng-class="{big: inClassview, completed: todo.completed, editing: todo == editedTodo, hiddenpost: todo.hidden, pinnedpost: todo.pinned}">
 		<h4 class="list-group-item-heading" ng-switch on="todo.headLastChar">
 			<span class="label label-danger" ng-show="todo.newQuestion">New</span>
 			<span class="badge">{{todo.order}}</span>
