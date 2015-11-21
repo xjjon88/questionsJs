@@ -455,7 +455,7 @@ describe('TodoCtrl', function() {
           echo: 1,
           order: 0
         });
-        
+
         scope.todos.push( {
           wholeMsg: "",
           head: "",
@@ -706,6 +706,39 @@ describe('TodoCtrl', function() {
         expect(scope.WordfilterFlag).toBe('on');
         scope.changeFilterFlag('off');
         expect(scope.WordfilterFlag).toBe('off');
+      });
+
+      it('NotContainBadWords test',function() {
+
+        var ctrl = controller('TodoCtrl', {
+          $scope: scope,
+        });
+          var str = "";
+          var bool = scope.NotContainBadWords(str);
+          expect(bool).toBe(false);
+          var str ="hello";
+          bool = scope.NotContainBadWords(str);
+          expect(bool).toBe(true);
+          var str ="shit";
+          bool = scope.NotContainBadWords(str);
+
+          expect(bool).toBe(false);
+
+      });
+
+      it('BadWordFilter test',function(){
+        var ctrl = controller('TodoCtrl', {
+          $scope: scope,
+        });
+
+          var str = "hi";
+          var afterfilter = scope.BadWordFilter(str);
+          expect(afterfilter).toBe("hi");
+          str = "shit";
+          afterfilter = scope.BadWordFilter(str);
+          expect(afterfilter).toBe("****");
+
+
       });
 
 
