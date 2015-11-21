@@ -131,7 +131,8 @@
 			<span ng-show="isWordFilterOn()"ng-class="{completed: todo.completed}">{{BadWordFilter(todo.head)}}</span>
 			<span ng-show="!isWordFilterOn()"ng-class="{completed: todo.completed}">{{(todo.head)}}</span>
 		</h4>
-		<p class="list-group-item-text"><br><span>{{BadWordFilter(todo.desc)}}</span><br><br> created: {{todo.dateString}}
+		<p class="list-group-item-text"><br><span ng-show="!isWordFilterOn()">{{todo.desc}}</span>
+																				<span ng-show="isWordFilterOn()">{{BadWordFilter(todo.desc)}}</span><br><br> created: {{todo.dateString}}
 			<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
 
 			<!-- Like Button-->
@@ -185,7 +186,7 @@
 					<span class="glyphicon glyphicon-trash" style="margin-right:3px"></span>Del </button>
 			</span>
 
-			
+
 			<button class="blackTextButton" data-toggle="modal" ng-show="inClassview" href="#myModal" ng-click="selectQuestion(todo)">Classroom View</button>
 
 			<!-- Reply input area-->
@@ -236,8 +237,9 @@
 		</h1>
         </div><div class="container"></div>
         <div class="modal-body">
-        	
-		<p class="list-group-item-text"><span class="desc">{{BadWordFilter(activeTodo.desc)}}</span><br><br> created: {{activeTodo.dateString}}
+
+		<p class="list-group-item-text"><span class="desc" ng-show="!isWordFilterOn()">{{activeTodo.desc}}</span>
+																		<span class="desc" ng-show="isWordFilterOn()">{{BadWordFilter(activeTodo.desc)}}</span><br><br> created: {{activeTodo.dateString}}
 			<span ng-show="activeTodo.tags">tags: {{activeTodo.tags}}</span></p>
 
 			<!-- Like Button-->
@@ -287,7 +289,7 @@
 					<button class="btn btn-info" type="button" ng-click="cancelReply(activeTodo)">Cancel</button>
 				</div>
 			</div>
-        
+
 
 			<!-- Submitted replies-->
 			<div class="list-group">
@@ -308,7 +310,7 @@
 				</div>
 			</div>
 			</div>
-			
+
         <div class="modal-footer">
           <button class="blackTextButton" href="#" data-dismiss="modal">Close</button>
         </div>
