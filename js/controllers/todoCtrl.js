@@ -193,7 +193,7 @@ $scope.addReply = function(todo,response){
 	}
 
     $scope.editedTodo = todo;
-    
+
     if(todo.replies == null){
     	todo.replies= [
         {head: response,
@@ -280,7 +280,7 @@ $scope.minusEcho = function (todo) {
 	if($scope.$storage[todo.$id] == "nechoed"){                              // undoing the dislike
 		todo.necho = todo.necho-1;
 		todo.order = todo.order+1;
-		
+
 		$scope.$storage[todo.$id] = "default";
 		$scope.todos.$save(todo);
 	}
@@ -445,8 +445,8 @@ angular.element($window).bind("scroll", function() {
 	$scope.changeColor = function(css){
 		$scope.css = css;
 	};
-	
-		$scope.BadWordFilter= function(s){
+	/* BadWordFilter */
+	$scope.BadWordFilter= function(s){
 
 	function wordFilter(str) {
 	var i;
@@ -464,12 +464,40 @@ angular.element($window).bind("scroll", function() {
 
 	};
 
+
+
 	$scope.isWordFilterOn = function(){
 		if ($scope.WordfilterFlag == 'on') {
 			return true;
 		}
 		else return false;
 	}
+
+	$scope.WordfilterFlag= 'on';
+	$scope.changeFilterFlag = function(WordfilterFlag){
+		$scope.WordfilterFlag = WordfilterFlag;
+	};
+
+	$scope.NotContainBadWords=function(str){
+
+if(str){
+		var i;
+		for(i=0;i<filterWords.length;i++)	{
+				var re = new RegExp(filterWords[i],"gi");
+
+				var s1 = s1+ (""+str).match(re);
+		}
+
+		if(!s1){
+			return true;
+		}
+	}
+
+	return false;
+
+	};
+
+
 
 	//CLASSVIEW SECTION
 
@@ -498,10 +526,7 @@ angular.element($window).bind("scroll", function() {
 
 	//END CLASSVIEW SECTION
 
-	$scope.WordfilterFlag= 'on';
-	$scope.changeFilterFlag = function(WordfilterFlag){
-		$scope.WordfilterFlag = WordfilterFlag;
-	};
+
 
 		$("#menu-0 > .dropdown-menu li a").click ( function(){
 		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Bad Words Filter Mode: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
@@ -520,4 +545,3 @@ angular.element($window).bind("scroll", function() {
 	});
 
 }]);
-
