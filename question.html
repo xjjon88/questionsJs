@@ -135,6 +135,7 @@
 			<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
 
 			<!-- Like Button-->
+			<br>
 			<button ng-show ="buttonLiked(todo.$id)" type="button" style= "width: 80px;background-color:green;color:white; border:1px #000000 solid;"  ng-click="addEcho(todo)" >
 
 					<font >Like</font>
@@ -167,7 +168,7 @@
 
 			<!-- Reply and Cancel Reply buttons-->
 
-			<button class="replyButton" ng-show="!replying.active[todo.$id]" ng-click="replying.active[todo.$id]=true">Reply</button>
+			<button class="blackTextButton" ng-show="!replying.active[todo.$id]" ng-click="replying.active[todo.$id]=true">Reply</button>
 
             		<!-- New Design of login-btn group -->
 			<span class="btn-group" role="group" style="margin-left:5px">
@@ -185,7 +186,7 @@
 			</span>
 
 			
-			<button data-toggle="modal" ng-show="inClassview" href="#myModal" ng-click="selectQuestion(todo)">Classroom View</button>
+			<button class="blackTextButton" data-toggle="modal" ng-show="inClassview" href="#myModal" ng-click="selectQuestion(todo)">Classroom View</button>
 
 			<!-- Reply input area-->
 
@@ -236,18 +237,20 @@
         </div><div class="container"></div>
         <div class="modal-body">
         	
-		<p class="list-group-item-text"><span ng-bind-html="activeTodo.trustedDesc"></span><br><br> created: {{activeTodo.dateString}}
+		<p class="list-group-item-text"><span class="desc" ng-bind-html="activeTodo.trustedDesc"></span><br><br> created: {{activeTodo.dateString}}
 			<span ng-show="activeTodo.tags">tags: {{activeTodo.tags}}</span></p>
 
 			<!-- Like Button-->
-			<button ng-show ="buttonLiked(activeTodo.$id)" type="button" style= "width: 80px;background-color:green;color:white; border:1px #000000 solid;"  ng-click="addEcho(activeTodo)" >
+			<br>
+			<div class="CVbuttons">
+			<button ng-show ="buttonLiked(activeTodo.$id)" type="button" style= "width: 200px;background-color:green;color:white; border:2px #000000 solid;"  ng-click="addEcho(activeTodo)" >
 
 					<font >Like</font>
 					<span class= "glyphicon glyphicon-hand-up"></span>
 			</button>
 
 
-			<button ng-hide ="buttonLiked(activeTodo.$id)" type="button" style= "width: 80px;background-color:white;color:green; border: 1px #00FF00 solid;"  ng-click="addEcho(activeTodo)"  >
+			<button ng-hide ="buttonLiked(activeTodo.$id)" type="button" style= "width: 200px;background-color:white;color:green; border: 2px #00FF00 solid;"  ng-click="addEcho(activeTodo)"  >
 				<font >Like</font>
 				<span class= "glyphicon glyphicon-hand-up"></span>
 			</button>
@@ -259,53 +262,23 @@
 
 			<!-- Dislike button-->
 
-			<button ng-show ="buttonDisliked(activeTodo.$id)" type="button" style= "width: 80px;background-color:red;color:white;border:1px #000000 solid;" ng-click="minusEcho(activeTodo)"  >
+			<button ng-show ="buttonDisliked(activeTodo.$id)" type="button" style= "width: 200px;background-color:red;color:white;border:2px #000000 solid;" ng-click="minusEcho(activeTodo)"  >
 						<span class= "glyphicon glyphicon-hand-down"></span>
 				<font >Dislike</font>
 			</button>
 
 
-			<button ng-hide ="buttonDisliked(activeTodo.$id)" type="button" style= "width: 80px;background-color:white;color:red;border:1px #FF0000 solid;" ng-click="minusEcho(activeTodo)"  >
+			<button ng-hide ="buttonDisliked(activeTodo.$id)" type="button" style= "width: 200px;background-color:white;color:red;border:2px #FF0000 solid;" ng-click="minusEcho(activeTodo)"  >
 				<span class= "glyphicon glyphicon-hand-down"></span>
 				<font >Dislike</font>
 			</button>
 
 			<!-- Reply and Cancel Reply buttons-->
 
-			<button class="replyButton" ng-show="!replying.active[activeTodo.$id]" ng-click="replying.active[activeTodo.$id]=true">Reply</button>
+			<button class="blackTextButton" ng-show="!replying.active[activeTodo.$id]" ng-click="replying.active[activeTodo.$id]=true">Reply</button>
 
-            		<!-- New Design of login-btn group -->
-			<span class="btn-group" role="group" style="margin-left:5px">
-				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" ng-click="pinTodo(activeTodo)">
-					<span class="glyphicon glyphicon-pushpin" style="margin-right:3px"></span>Pin to Top </button>
-				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" ng-click="toggleCompleted(activeTodo)">
-					<span class="glyphicon glyphicon-check" style="margin-right:3px"></span>Toggle Completed </button>
-				&nbsp;
-				<button type="button" ng-show="!activeTodo.hidden && isAdmin" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideTodo(activeTodo)">
-					<span class="glyphicon glyphicon-eye-close" style="margin-right:3px"></span>Hide </button>
-				<button type="button" ng-show="activeTodo.hidden" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideTodo(activeTodo)">
-					<span class="glyphicon glyphicon-eye-open" style="margin-right:3px"></span>Unhide </button>
-				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" aria-hidden="true" ng-click="removeTodo(activeTodo)">
-					<span class="glyphicon glyphicon-trash" style="margin-right:3px"></span>Del </button>
-			</span>
-
-			<!-- Submitted replies-->
-			<div class="list-group">
-			<span class="list-group-item" ng-repeat="reply in activeTodo.replies" ng-show="(isAdmin && !inClassview) || !reply.hidden" ng-class="{hiddenpost: reply.hidden, pinnedpost: reply.highlighted}">
-				<h4 class="list-group-item-heading">
-				<span ng-show="isWordFilterOn()">{{BadWordFilter(reply.head)}}</span>
-				<span ng-show="!isWordFilterOn()">{{reply.head}}</span>
-
-				</h4>
-				<button type="button" ng-show="!reply.hidden && isAdmin" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideReply(activeTodo,reply)">
-					<span class="glyphicon glyphicon-eye-close" style="margin-right:3px"></span>Hide </button>
-				<button type="button" ng-show="reply.hidden" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideReply(activeTodo,reply)">
-					<span class="glyphicon glyphicon-eye-open" style="margin-right:3px"></span>Unhide </button>
-				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" ng-click="highlightReply(activeTodo,reply)">
-					<span class="glyphicon glyphicon-star" style="margin-right:3px"></span>Highlight</button>
-			</span>
-			</div>
-			<!-- Reply input area-->
+		</div>
+		<!-- Reply input area-->
 
 			<div class="well input-group" ng-hide="!replying.active[activeTodo.$id]">
 				<textarea rows="2" name="reply" id="activeTodo.$id" type="text" class="form-control" ng-model="replyBox.replyText[activeTodo.$id]"></textarea>
@@ -314,9 +287,30 @@
 					<button class="btn btn-info" type="button" ng-click="cancelReply(activeTodo)">Cancel</button>
 				</div>
 			</div>
-        </div>
+        
+
+			<!-- Submitted replies-->
+			<div class="list-group">
+				<div class="CVreplies">
+			<span class="list-group-item" ng-repeat="reply in activeTodo.replies" ng-show="(isAdmin && !inClassview) || !reply.hidden" ng-class="{hiddenpost: reply.hidden, highlightpost: reply.highlighted}">
+				<h2 class="list-group-item-heading">
+				<span ng-show="isWordFilterOn()">{{BadWordFilter(reply.head)}}</span>
+				<span ng-show="!isWordFilterOn()">{{reply.head}}</span>
+
+				</h2>
+				<button type="button" ng-show="!reply.hidden && isAdmin" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideReply(activeTodo,reply)">
+					<span class="glyphicon glyphicon-eye-close" style="margin-right:3px"></span>Hide </button>
+				<button type="button" ng-show="reply.hidden" class="btn btn-default btn-xs" aria-hidden="true" ng-click="hideReply(activeTodo,reply)">
+					<span class="glyphicon glyphicon-eye-open" style="margin-right:3px"></span>Unhide </button>
+				<button type="button" ng-show="isAdmin" class="btn btn-default btn-xs" ng-click="highlightReply(activeTodo,reply)">
+					<span class="glyphicon glyphicon-star" style="margin-right:3px"></span>Highlight</button>
+			</span>
+				</div>
+			</div>
+			</div>
+			
         <div class="modal-footer">
-          <button href="#" data-dismiss="modal">Close</button>
+          <button class="blackTextButton" href="#" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

@@ -26,6 +26,10 @@
 	background-color: #85FF5C;
 }
 
+.highlightpost{
+	background-color: #66c1ff;
+}
+
 .hiddenpost {
 	color: #989898;
 	background-color: #FFFF9D;
@@ -66,23 +70,37 @@
 	margin-left: 15px;
 }
 
-/*
-.modal-content{
-	}	
-.modal-footer{
-	}
-*/
 .modal-dialog{
 	width: 90%;
 }
-
-.modal-body{
-	font-size: 36px;
-	min-height: 700px;
+.modal-content{
+	overflow: auto;
+}
+.modal-body {
+	height: 600px;
+	overflow: auto;
+}
+.modal-body > p {
+	font-size: 24px;
+}
+.modal-body > p > .desc{
+	font-size: 52px;
 	}
-
+.modal-body > .CVbuttons{
+	font-size: 32px;
+	}
+.modal-header{
+	height: 184px;
+	overflow:auto;
+}
 .modal-header > h1{
 	font-size: 72px;
+	text-align: center;
+}
+
+.modal-header > h1 > .badge{
+	font-size: 72px;
+	text-align: left;
 }
 
 nav {
