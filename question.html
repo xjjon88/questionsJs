@@ -200,7 +200,7 @@
 
 			<!-- Submitted replies-->
 			<div class="list-group">
-			<span class="list-group-item" ng-repeat="reply in todo.replies" ng-show="(isAdmin && !inClassview) || !reply.hidden" ng-class="{hiddenpost: reply.hidden, pinnedpost: reply.highlighted}">
+			<span class="list-group-item" ng-repeat="reply in todo.replies" ng-show="(isAdmin && !inClassview) || !reply.hidden" ng-class="{hiddenpost: reply.hidden, highlightpost: reply.highlighted}">
 				<h4 class="list-group-item-heading">
 				<span ng-show="isWordFilterOn()">{{BadWordFilter(reply.head)}}</span>
 				<span ng-show="!isWordFilterOn()">{{reply.head}}</span>
