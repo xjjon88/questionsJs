@@ -455,6 +455,19 @@ describe('TodoCtrl', function() {
           echo: 1,
           order: 0
         });
+        
+        scope.todos.push( {
+          wholeMsg: "",
+          head: "",
+          headLastChar: "",
+          desc: "",
+          linkedDesc: '',
+          completed: false,
+          timestamp: 0,
+          tags: "",
+          echo: 0,
+          order: 2
+        });
 
         scope.$digest();
 
