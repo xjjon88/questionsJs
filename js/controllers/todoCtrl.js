@@ -478,8 +478,8 @@ angular.element($window).bind("scroll", function() {
 	$('#myModal').modal({
         backdrop: true,
         keyboard: true
-    })
-    });
+     })
+	});
 
 	$scope.inClassview = false;
 	$scope.classRoomMode = function(mode){

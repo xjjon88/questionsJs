@@ -224,15 +224,15 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="list-group-item-heading" ng-switch on="activeTodo.headLastChar">
+          <h1 class="list-group-item-heading" ng-switch on="activeTodo.headLastChar">
 			<span class="label label-danger" ng-show="activeTodo.newQuestion">New</span>
 			<span class="badge">{{activeTodo.order}}</span>
 			<!-- switch -->
-			<span ng-switch-when="?" class="glyphicon 	glyphicon-question-sign"></span>
+			<span ng-switch-when="?">Question: </span>
 			<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
 			<span ng-show="isWordFilterOn()"ng-class="{completed: activeTodo.completed}">{{BadWordFilter(activeTodo.head)}}</span>
 			<span ng-show="!isWordFilterOn()"ng-class="{completed: activeTodo.completed}">{{(activeTodo.head)}}</span>
-		</h4>
+		</h1>
         </div><div class="container"></div>
         <div class="modal-body">
         	
