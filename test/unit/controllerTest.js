@@ -71,7 +71,7 @@ describe('TodoCtrl', function() {
         }
       });
 
-      it('loginFb test', function(){
+      /*it('loginFb test', function(){
         var cntrl = controller('TodoCtrl', {
           $scope: scope,
           $location: location,
@@ -87,19 +87,15 @@ describe('TodoCtrl', function() {
 
         scope.todos = firebaseArray(query);
 
-
-
         scope.ref = firebaseMock
 
         scope.FBLogin();
 
         spyOn(scope, 'FBLogin');
 
-
-
         expect(scope.isAdmin).toBe(false);
 
-      });
+      });*/
 
       it('logoutFb test', function(){
         var cntrl = controller('TodoCtrl', {
@@ -206,7 +202,7 @@ describe('TodoCtrl', function() {
       });
 
 
-      it('clearCompletedTodos', function(){
+      //it('clearCompletedTodos', function(){
 
         /*
         var firebaseMock = new Firebase("mock://xjquestions.firebaseio.com/");
@@ -237,7 +233,7 @@ describe('TodoCtrl', function() {
 
         */
 
-        var ctrl = controller('TodoCtrl', {
+        /*var ctrl = controller('TodoCtrl', {
           $scope: scope,
           $location: location,
           $controller: controller,
@@ -276,10 +272,10 @@ describe('TodoCtrl', function() {
         scope.clearCompletedTodos();
 
 
-      });
+      });*/
 
 
-      it('addTo Testing', function(){
+      it('addTodo Testing', function(){
         var ctrl = controller('TodoCtrl', {
           $scope: scope,
           $location: location,
@@ -533,8 +529,184 @@ describe('TodoCtrl', function() {
         expect(scope.css).toBe("main");
       });
 
+      it('addEcho test', function() {
+        var ctrl = controller('TodoCtrl', {
+          $scope: scope,
+        });
+
+        var todo = {
+          wholeMsg: "",
+          echo: 0,
+          necho: 0,
+          order: 0
+        };
+
+        scope.addEcho(todo);
+        expect(todo.echo).toBe(1);
+        expect(todo.order).toBe(1);
+        expect(scope.$storage[todo.$id]).toBe("echoed");
+
+        scope.addEcho(todo);
+        expect(todo.echo).toBe(0);
+        expect(todo.order).toBe(0);
+        expect(scope.$storage[todo.$id]).toBe("default");
+
+        scope.minusEcho(todo);
+        expect(todo.necho).toBe(1);
+        expect(todo.order).toBe(-1);
+        expect(scope.$storage[todo.$id]).toBe("nechoed");
+        scope.addEcho(todo);
+        expect(todo.echo).toBe(1);
+        expect(todo.necho).toBe(0);
+        expect(todo.order).toBe(1);
+        expect(scope.$storage[todo.$id]).toBe("echoed");
+      });
+
+      it('minusEcho test', function() {
+        var ctrl = controller('TodoCtrl', {
+          $scope: scope,
+        });
+
+        var todo = {
+          wholeMsg: "",
+          echo: 0,
+          necho: 0,
+          order: 0
+        };
+
+        scope.minusEcho(todo);
+        expect(todo.necho).toBe(1);
+        expect(todo.order).toBe(-1);
+        expect(scope.$storage[todo.$id]).toBe("nechoed");
+
+        scope.minusEcho(todo);
+        expect(todo.necho).toBe(0);
+        expect(todo.order).toBe(0);
+        expect(scope.$storage[todo.$id]).toBe("default");
+
+        scope.addEcho(todo);
+        expect(todo.echo).toBe(1);
+        expect(todo.order).toBe(1);
+        expect(scope.$storage[todo.$id]).toBe("echoed");
+        scope.minusEcho(todo);
+        expect(todo.echo).toBe(0);
+        expect(todo.necho).toBe(1);
+        expect(todo.order).toBe(-1);
+        expect(scope.$storage[todo.$id]).toBe("nechoed");
+      });
+
+      it('buttonLiked test', function() {
+        var ctrl = controller('TodoCtrl', {
+          $scope: scope,
+        });
+
+        var todo = {
+          wholeMsg: "",
+          echo: 0,
+          necho: 0,
+          order: 0
+        };
+
+        scope.addEcho(todo);
+        expect( scope.buttonLiked(todo.$id) ).toBe(true);
+        scope.addEcho(todo);
+        expect( scope.buttonLiked(todo.$id) ).toBe(false);
+      });
+
+      it('buttonDisliked test', function() {
+        var ctrl = controller('TodoCtrl', {
+          $scope: scope,
+        });
+
+        var todo = {
+          wholeMsg: "",
+          echo: 0,
+          necho: 0,
+          order: 0
+        };
+
+        scope.minusEcho(todo);
+        expect( scope.buttonDisliked(todo.$id) ).toBe(true);
+        scope.minusEcho(todo);
+        expect( scope.buttonDisliked(todo.$id) ).toBe(false);
+      });
+
+      it('hideTodo test', function() {
+        var ctrl = controller('TodoCtrl', {
+          $scope: scope,
+        });
+
+        var todo = {
+          wholeMsg: "",
+          hidden: false
+        };
+
+        scope.hideTodo(todo);
+        expect(todo.hidden).toBe(true);
+      });
+
+      it('pinTodo test', function() {
+        var ctrl = controller('TodoCtrl', {
+          $scope: scope,
+        });
+
+        var todo = {
+          wholeMsg: "",
+          pinned: false
+        };
+
+        scope.pinTodo(todo);
+        expect(todo.pinned).toBe(true);
+      });
+
+      it('toggleCompleted test', function() {
+        var ctrl = controller('TodoCtrl', {
+          $scope: scope,
+        });
+
+        var todo = {
+          wholeMsg: "",
+          completed: false
+        };
+
+        scope.toggleCompleted(todo);
+        expect(todo.completed).toBe(true);
+      });
+
+      it('isWordFilterOn test', function() {
+        var ctrl = controller('TodoCtrl', {
+          $scope: scope,
+        });
+
+        expect(scope.WordfilterFlag).toBe('on');
+        expect(scope.isWordFilterOn()).toBe(true);
+        scope.WordfilterFlag = 'off';
+        expect(scope.WordfilterFlag).toBe('off');
+        expect(scope.isWordFilterOn()).toBe(false);
+      });
+
+      it('changeFilterFlag test', function() {
+        var ctrl = controller('TodoCtrl', {
+          $scope: scope,
+        });
+
+        expect(scope.WordfilterFlag).toBe('on');
+        scope.changeFilterFlag('off');
+        expect(scope.WordfilterFlag).toBe('off');
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     });
-
-
   });
