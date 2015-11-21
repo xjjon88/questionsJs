@@ -131,7 +131,7 @@
 			<span ng-show="isWordFilterOn()"ng-class="{completed: todo.completed}">{{BadWordFilter(todo.head)}}</span>
 			<span ng-show="!isWordFilterOn()"ng-class="{completed: todo.completed}">{{(todo.head)}}</span>
 		</h4>
-		<p class="list-group-item-text"><br><span>{{todo.desc}}</span><br><br> created: {{todo.dateString}}
+		<p class="list-group-item-text"><br><span>{{BadWordFilter(todo.desc)}}</span><br><br> created: {{todo.dateString}}
 			<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
 
 			<!-- Like Button-->
@@ -237,7 +237,7 @@
         </div><div class="container"></div>
         <div class="modal-body">
         	
-		<p class="list-group-item-text"><span class="desc">{{activeTodo.desc}}</span><br><br> created: {{activeTodo.dateString}}
+		<p class="list-group-item-text"><span class="desc">{{BadWordFilter(activeTodo.desc)}}</span><br><br> created: {{activeTodo.dateString}}
 			<span ng-show="activeTodo.tags">tags: {{activeTodo.tags}}</span></p>
 
 			<!-- Like Button-->
