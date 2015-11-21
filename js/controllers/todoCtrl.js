@@ -91,8 +91,6 @@ var query = echoRef.orderByChild("order");
 //.limitToFirst(1000);
 $scope.todos = $firebaseArray(query);
 
-
-//$scope.input.wholeMsg = '';
 $scope.editedTodo = null;
 
 // pre-precessing for collection
@@ -145,6 +143,10 @@ $scope.getFirstAndRestSentence = function($string) {
 	}
 	return [head, desc];
 };
+
+$scope.hashToBox = function($tag){
+	$scope.input = {wholeMsg: $tag};
+}
 
 	//
 $scope.addTodo = function () {
@@ -460,11 +462,7 @@ angular.element($window).bind("scroll", function() {
 	}
 	return wordFilter(s);
 
-
 	};
-
-
-
 
 	$scope.isWordFilterOn = function(){
 		if ($scope.WordfilterFlag == 'on') {
@@ -472,13 +470,41 @@ angular.element($window).bind("scroll", function() {
 		}
 		else return false;
 	}
+
+	//CLASSVIEW SECTION
+
+	$('#openBtn').click(function(){
+
+	$('#myModal').modal({
+        backdrop: true,
+        keyboard: true
+     })
+	});
+
+	$scope.inClassview = false;
+	$scope.classRoomMode = function(mode){
+			$scope.inClassview = mode;
+	}
+
+	$scope.activeTodo = null;
+	$scope.selectQuestion = function(todo){
+		$scope.activeTodo = todo;
+	}
+
+	$("#classview > .dropdown-menu li a").click ( function(){
+		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Classroom Mode: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
+		$(this).parents(".dropdown").find('.dropdown-toggle').val( $(this).data('value') );
+	});
+
+	//END CLASSVIEW SECTION
+
 	$scope.WordfilterFlag= 'on';
 	$scope.changeFilterFlag = function(WordfilterFlag){
 		$scope.WordfilterFlag = WordfilterFlag;
 	};
 
-	$("#menu-0 > .dropdown-menu li a").click ( function(){
-		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Filter Mode: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
+		$("#menu-0 > .dropdown-menu li a").click ( function(){
+		$(this).parents(".dropdown").find('.dropdown-toggle').html( "<strong>Bad Words Filter Mode: </strong>" + $(this).text() + '<span class="caret" style="margin-left:7px"></span>' );
 		$(this).parents(".dropdown").find('.dropdown-toggle').val( $(this).data('value') );
 	});
 

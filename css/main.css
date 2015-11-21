@@ -3,7 +3,6 @@
 	text-decoration: line-through;
 }
 
-
 .icon{display: inline-block;}
 .icon,
 .icon + span{vertical-align: middle;}
@@ -25,6 +24,10 @@
 
 .pinnedpost{
 	background-color: #85FF5C;
+}
+
+.highlightpost{
+	background-color: #66c1ff;
 }
 
 .hiddenpost {
@@ -65,6 +68,39 @@
 .FB-btn {
 	margin-top: 9px;
 	margin-left: 15px;
+}
+
+.modal-dialog{
+	width: 90%;
+}
+.modal-content{
+	overflow: auto;
+}
+.modal-body {
+	height: 600px;
+	overflow: auto;
+}
+.modal-body > p {
+	font-size: 24px;
+}
+.modal-body > p > .desc{
+	font-size: 52px;
+	}
+.modal-body > .CVbuttons{
+	font-size: 32px;
+	}
+.modal-header{
+	height: 184px;
+	overflow:auto;
+}
+.modal-header > h1{
+	font-size: 72px;
+	text-align: center;
+}
+
+.modal-header > h1 > .badge{
+	font-size: 72px;
+	text-align: left;
 }
 
 nav {

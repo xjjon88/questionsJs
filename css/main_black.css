@@ -29,7 +29,7 @@ body{
 	padding-top: 100px;
 }
 
-.replyButton{
+.blackTextButton{
 	color: black;
 }
 
@@ -43,11 +43,15 @@ body{
 }
 
 .list-group-item{
-	background: darkgrey;
+	background: #404040;
 }
 
 .pinnedpost{
 	background-color: #52CC29;
+}
+
+.highlightpost{
+	background-color: #66c1ff;
 }
 
 .hiddenpost {
@@ -87,6 +91,40 @@ body{
 .FB-btn {
 	margin-top: 9px;
 	margin-left: 15px;
+}
+.modal-dialog{
+	width: 90%;
+}
+.modal-content{
+	overflow: auto;
+	background: #404040;
+}
+.modal-body {
+	height: 600px;
+	overflow: auto;
+	background: black;
+}
+.modal-body > p {
+	font-size: 24px;
+}
+.modal-body > p > .desc{
+	font-size: 52px;
+	}
+.modal-body > .CVbuttons{
+	font-size: 32px;
+	}
+.modal-header{
+	height: 184px;
+	overflow:auto;
+}
+.modal-header > h1{
+	font-size: 72px;
+	text-align: center;
+}
+
+.modal-header > h1 > .badge{
+	font-size: 72px;
+	text-align: left;
 }
 
 nav {
