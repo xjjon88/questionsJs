@@ -250,7 +250,7 @@
 
 		<p class="list-group-item-text"><span class="desc" ng-show="!isWordFilterOn()">{{activeTodo.desc}}</span>
 																		<span class="desc" ng-show="isWordFilterOn()">{{BadWordFilter(activeTodo.desc)}}</span>
-																		<br><br> Created on <strong>{{todo.timestamp | date:"MMMM d, yyyy 'at' HH:mm:ss"}}</strong>
+																		<br><br> Created on <strong>{{activeTodo.timestamp | date:"MMMM d, yyyy 'at' HH:mm:ss"}}</strong>
 																		<br><span ng-show="activeTodo.tags">tags:</span>
 																			<span ng-repeat="tag in activeTodo.tags | hashFilter">
 																				<span ng-show="isWordFilterOn()&&NotContainBadWords(tag)"> [{{tag}}]</span>
