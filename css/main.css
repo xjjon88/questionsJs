@@ -48,6 +48,7 @@
 
 .input-group > textarea {
 	min-width: 150px;
+	min-height: 50px;
 	max-height: 500px;
 	resize: vertical;
 	font-size: 20px;
@@ -75,6 +76,7 @@
 }
 .modal-content{
 	overflow: auto;
+	text-align: center;
 }
 .modal-body {
 	height: 600px;
@@ -105,9 +107,8 @@
 
 nav {
 	font-size: 15px;
-	vertical-align: middle;
 }
 
 body {
-	padding-top: 100px;
+	padding-top: 130px;
 }
