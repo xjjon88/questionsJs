@@ -26,19 +26,10 @@
 body{
 	background-color: black;
 	color: white;
-	padding-top: 100px;
+	padding-top: 130px;
 }
 
 .blackTextButton{
-	color: black;
-}
-
-.cc-container{
-	background-color: black;
-	color: white;
-}
-
-.color-options {
 	color: black;
 }
 
@@ -98,6 +89,7 @@ body{
 .modal-content{
 	overflow: auto;
 	background: #404040;
+	text-align: center;
 }
 .modal-body {
 	height: 600px;
@@ -129,5 +121,4 @@ body{
 
 nav {
 	font-size: 15px;
-	vertical-align: middle;
 }

@@ -137,9 +137,9 @@
 			<span ng-show="!isWordFilterOn()"ng-class="{completed: todo.completed}">{{(todo.head)}}</span>
 		</h4>
 		<p class="list-group-item-text"><br><span ng-show="!isWordFilterOn()">{{todo.desc}}</span>
-																				<span ng-show="isWordFilterOn()">{{BadWordFilter(todo.desc)}}</span><br><br> created: {{todo.dateString}}
+																				<span ng-show="isWordFilterOn()">{{BadWordFilter(todo.desc)}}</span><br><br> Created on <strong>{{todo.timestamp | date:"MMMM d, yyyy 'at' HH:mm:ss"}}</strong>
 
-																					<span ng-show="todo.tags">tags:</span>
+																					<br><span ng-show="todo.tags">tags:</span>
 																					<span ng-repeat="tag in todo.tags | hashFilter">
 																							<span ng-show="isWordFilterOn()&&NotContainBadWords(tag)"> [{{tag}}]</span>
 																							<span ng-show="!isWordFilterOn()" > [{{tag}}]</span>
@@ -250,8 +250,8 @@
 
 		<p class="list-group-item-text"><span class="desc" ng-show="!isWordFilterOn()">{{activeTodo.desc}}</span>
 																		<span class="desc" ng-show="isWordFilterOn()">{{BadWordFilter(activeTodo.desc)}}</span>
-																		<br><br> created: {{activeTodo.dateString}}
-																		<span ng-show="activeTodo.tags">tags:</span>
+																		<br><br> Created on <strong>{{activeTodo.timestamp | date:"MMMM d, yyyy 'at' HH:mm:ss"}}</strong>
+																		<br><span ng-show="activeTodo.tags">tags:</span>
 																			<span ng-repeat="tag in activeTodo.tags | hashFilter">
 																				<span ng-show="isWordFilterOn()&&NotContainBadWords(tag)"> [{{tag}}]</span>
 																				<span ng-show="!isWordFilterOn()" > [{{tag}}]</span>
