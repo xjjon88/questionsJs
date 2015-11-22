@@ -77,6 +77,7 @@ var url = firebaseURL + roomId + "/questions/";
 var echoRef = new Firebase(url);
 $scope.replyBox = {replyText : ""};
 $scope.replying = {active : false};
+$scope.collapse = {active : false};
 
 	/** Sets roomTitle attribute for the root room object **/
 	//var roomFB = new Firebase(firebaseURL + roomId);
