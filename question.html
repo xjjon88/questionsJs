@@ -177,9 +177,12 @@
 				<font >Dislike</font>
 			</button>
 
-			<!-- Reply and Cancel Reply buttons-->
+			<!-- Reply and Collapse buttons-->
 
 			<button class="blackTextButton" ng-show="!replying.active[todo.$id]" ng-click="replying.active[todo.$id]=true">Reply</button>
+
+			<button class="blackTextButton" ng-show="!collapse.active[todo.$id]" ng-click="collapse.active[todo.$id]=true">Collapse Replies</button>
+			<button class="blackTextButton" ng-show="collapse.active[todo.$id]" ng-click="collapse.active[todo.$id]=false">Show Replies</button>
 
             		<!-- New Design of login-btn group -->
 			<span class="btn-group" role="group" style="margin-left:5px">
@@ -211,7 +214,7 @@
 
 			<!-- Submitted replies-->
 			<div class="list-group">
-			<span class="list-group-item" ng-repeat="reply in todo.replies" ng-show="(isAdmin && !inClassview) || !reply.hidden" ng-class="{hiddenpost: reply.hidden, highlightpost: reply.highlighted}">
+			<span class="list-group-item" ng-repeat="reply in todo.replies" ng-show="((isAdmin && !inClassview) || !reply.hidden) && !collapse.active[todo.$id]" ng-class="{hiddenpost: reply.hidden, highlightpost: reply.highlighted}">
 				<h4 class="list-group-item-heading">
 				<span ng-show="isWordFilterOn()">{{BadWordFilter(reply.head)}}</span>
 				<span ng-show="!isWordFilterOn()">{{reply.head}}</span>
