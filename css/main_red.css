@@ -26,24 +26,15 @@
 body{
 	background-color: #B80000;
 	color: white;
-	padding-top: 100px;
+	padding-top: 130px;
 }
 
 .blackTextButton{
 	color: black;
 }
 
-.cc-container{
-	background-color: #B80000;
-	color: white;
-}
-
-.color-options {
-	color: black;
-}
-
 .list-group-item{
-	background: #595959;
+	background: #db9773;
 }
 
 .list-group-item[ng-show="todo.hidden"]{
@@ -102,7 +93,8 @@ body{
 }
 .modal-content{
 	overflow: auto;
-	background: #595959;
+	background: #db9773;
+	text-align: center;
 }
 .modal-body {
 	height: 600px;
@@ -134,5 +126,4 @@ body{
 
 nav {
 	font-size: 15px;
-	vertical-align: middle;
 }
